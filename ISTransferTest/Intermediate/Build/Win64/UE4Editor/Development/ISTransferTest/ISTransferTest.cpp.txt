@@ -1,0 +1,2 @@
+C:\Users\Rion Cole\Desktop\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\Definitions.ISTransferTest.h
+c:\users\rion cole\desktop\istransfertest\source\istransfertest\ISTransferTest.h
