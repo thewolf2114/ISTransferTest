@@ -30,7 +30,11 @@ void APlanningAgent::BeginPlay()
 {
 	Super::BeginPlay();
 	
-
+	for (TActorIterator<ASpawnPoint> ActorITR(GetWorld()); ActorITR; ++ActorITR)
+	{
+		ASpawnPoint* spawnPoint = *ActorITR;
+		m_spawnPoints.Add(*spawnPoint);
+	}
 }
 
 void APlanningAgent::CalcFrustration()
