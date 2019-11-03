@@ -3,8 +3,8 @@
 
 #include "PlanningAgent.h"
 #include "EnemyAgent1.h"
-#include "SpawnPoint.h"
 #include "Containers/Array.h"
+#include "Engine.h"
 
 // Sets default values
 APlanningAgent::APlanningAgent()
@@ -23,19 +23,6 @@ APlanningAgent::APlanningAgent()
 	m_enemyHealth = 100;
 	m_enemyAggression = 0;
 	m_enemySpeed = 500;
-
-	// initialize spawn points array
-	m_spawnPoints = new TArray<ASpawnPoint>();
-}
-
-APlanningAgent::~APlanningAgent()
-{
-	if (m_spawnPoints->Num() > 0)
-	{
-		m_spawnPoints->Empty();
-	}
-	delete m_spawnPoints;
-	m_spawnPoints = nullptr;
 }
 
 // Called when the game starts or when spawned
@@ -43,6 +30,7 @@ void APlanningAgent::BeginPlay()
 {
 	Super::BeginPlay();
 	
+
 }
 
 void APlanningAgent::CalcFrustration()

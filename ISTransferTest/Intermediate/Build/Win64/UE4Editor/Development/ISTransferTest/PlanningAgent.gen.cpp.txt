@@ -2,4 +2,6 @@ C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Edi
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h
 C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Source\ISTransferTest/PlanningAgent.h
+c:\users\rion cole\desktop\istest\istransfertest\source\istransfertest\SpawnPoint.h
+c:\users\rion cole\desktop\istest\istransfertest\intermediate\build\win64\ue4editor\inc\istransfertest\SpawnPoint.generated.h
 c:\users\rion cole\desktop\istest\istransfertest\intermediate\build\win64\ue4editor\inc\istransfertest\PlanningAgent.generated.h

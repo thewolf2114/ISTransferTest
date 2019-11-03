@@ -13,9 +13,9 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define ISTRANSFERTEST_PlanningAgent_generated_h
 
-#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_RPC_WRAPPERS
-#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_RPC_WRAPPERS_NO_PURE_DECLS
-#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_INCLASS_NO_PURE_DECLS \
+#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_RPC_WRAPPERS
+#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_RPC_WRAPPERS_NO_PURE_DECLS
+#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAPlanningAgent(); \
 	friend struct Z_Construct_UClass_APlanningAgent_Statics; \
@@ -24,7 +24,7 @@ public: \
 	DECLARE_SERIALIZER(APlanningAgent)
 
 
-#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_INCLASS \
+#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_INCLASS \
 private: \
 	static void StaticRegisterNativesAPlanningAgent(); \
 	friend struct Z_Construct_UClass_APlanningAgent_Statics; \
@@ -33,7 +33,7 @@ public: \
 	DECLARE_SERIALIZER(APlanningAgent)
 
 
-#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_STANDARD_CONSTRUCTORS \
+#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_STANDARD_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API APlanningAgent(const FObjectInitializer& ObjectInitializer); \
 	DEFINE_DEFAULT_OBJECT_INITIALIZER_CONSTRUCTOR_CALL(APlanningAgent) \
@@ -46,7 +46,7 @@ private: \
 public:
 
 
-#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_ENHANCED_CONSTRUCTORS \
+#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	NO_API APlanningAgent(APlanningAgent&&); \
@@ -57,29 +57,29 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(APlanningAgent); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(APlanningAgent)
 
 
-#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_PRIVATE_PROPERTY_OFFSET \
+#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__m_enemyClass() { return STRUCT_OFFSET(APlanningAgent, m_enemyClass); }
 
 
-#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_9_PROLOG
-#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_GENERATED_BODY_LEGACY \
+#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_10_PROLOG
+#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_PRIVATE_PROPERTY_OFFSET \
-	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_RPC_WRAPPERS \
-	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_INCLASS \
-	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_STANDARD_CONSTRUCTORS \
+	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_PRIVATE_PROPERTY_OFFSET \
+	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_RPC_WRAPPERS \
+	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_INCLASS \
+	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_STANDARD_CONSTRUCTORS \
 public: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_GENERATED_BODY \
+#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_PRIVATE_PROPERTY_OFFSET \
-	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
-	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_INCLASS_NO_PURE_DECLS \
-	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_ENHANCED_CONSTRUCTORS \
+	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_PRIVATE_PROPERTY_OFFSET \
+	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_RPC_WRAPPERS_NO_PURE_DECLS \
+	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_INCLASS_NO_PURE_DECLS \
+	ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 

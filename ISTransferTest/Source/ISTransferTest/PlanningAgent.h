@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "SpawnPoint.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "PlanningAgent.generated.h"
@@ -14,7 +15,6 @@ class ISTRANSFERTEST_API APlanningAgent : public AActor
 public:	
 	// Sets default values for this actor's properties
 	APlanningAgent();
-	~APlanningAgent();
 
 protected:
 	// Called when the game starts or when spawned
@@ -34,7 +34,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Spawn Enemy")
 	TSubclassOf<class AEnemyAgent1> m_enemyClass;
-	TArray<class ASpawnPoint>* m_spawnPoints;
+	TArray<ASpawnPoint> m_spawnPoints;
 
 	// Calculates the players frustration level
 	void CalcFrustration();
