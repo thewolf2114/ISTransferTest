@@ -57,7 +57,10 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(APlanningAgent); \
 	DEFINE_DEFAULT_CONSTRUCTOR_CALL(APlanningAgent)
 
 
-#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_PRIVATE_PROPERTY_OFFSET
+#define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__m_enemyClass() { return STRUCT_OFFSET(APlanningAgent, m_enemyClass); }
+
+
 #define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_9_PROLOG
 #define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_12_GENERATED_BODY_LEGACY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \

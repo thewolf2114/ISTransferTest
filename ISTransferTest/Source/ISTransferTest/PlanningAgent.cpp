@@ -2,6 +2,9 @@
 
 
 #include "PlanningAgent.h"
+#include "EnemyAgent1.h"
+#include "SpawnPoint.h"
+#include "Containers/Array.h"
 
 // Sets default values
 APlanningAgent::APlanningAgent()

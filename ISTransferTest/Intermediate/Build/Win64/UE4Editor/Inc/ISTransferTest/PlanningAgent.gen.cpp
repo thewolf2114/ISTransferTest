@@ -17,6 +17,8 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 	ISTRANSFERTEST_API UClass* Z_Construct_UClass_APlanningAgent();
 	ENGINE_API UClass* Z_Construct_UClass_AActor();
 	UPackage* Z_Construct_UPackage__Script_ISTransferTest();
+	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
+	ISTRANSFERTEST_API UClass* Z_Construct_UClass_AEnemyAgent1_NoRegister();
 // End Cross Module References
 	void APlanningAgent::StaticRegisterNativesAPlanningAgent()
 	{
@@ -31,6 +33,11 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_enemyClass_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FClassPropertyParams NewProp_m_enemyClass;
+		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
 	};
@@ -44,6 +51,16 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 		{ "ModuleRelativePath", "PlanningAgent.h" },
 	};
 #endif
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass_MetaData[] = {
+		{ "Category", "Spawn Enemy" },
+		{ "ModuleRelativePath", "PlanningAgent.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass = { "m_enemyClass", nullptr, (EPropertyFlags)0x0024080000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_enemyClass), Z_Construct_UClass_AEnemyAgent1_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass_MetaData)) };
+	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_APlanningAgent_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass,
+	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_APlanningAgent_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<APlanningAgent>::IsAbstract,
 	};
@@ -53,11 +70,11 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 		&StaticCppClassTypeInfo,
 		DependentSingletons,
 		nullptr,
-		nullptr,
+		Z_Construct_UClass_APlanningAgent_Statics::PropPointers,
 		nullptr,
 		ARRAY_COUNT(DependentSingletons),
 		0,
-		0,
+		ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::PropPointers),
 		0,
 		0x009000A0u,
 		METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::Class_MetaDataParams, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::Class_MetaDataParams))
@@ -71,7 +88,7 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlanningAgent, 334084535);
+	IMPLEMENT_CLASS(APlanningAgent, 250917240);
 	template<> ISTRANSFERTEST_API UClass* StaticClass<APlanningAgent>()
 	{
 		return APlanningAgent::StaticClass();

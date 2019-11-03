@@ -31,6 +31,9 @@ protected:
 	float m_enemyAggression;
 	float m_enemySpeed;
 
+	UPROPERTY(EditAnywhere, Category = "Spawn Enemy")
+	TSubclassOf<class AEnemyAgent1> m_enemyClass;
+
 	// Calculates the players frustration level
 	void CalcFrustration();
 
