@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\ISTransferTest.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{0FDCFCFC-81EC-4531-81FB-4A3258536CCB}</UniqueIdentifier>
+      <UniqueIdentifier>{BA1A3B8E-58B9-4BEE-997A-C0E0A91DB4AC}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\ISTransferTest.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{4C0A5057-2F8F-43E9-92E5-8F1B89CCFAE9}</UniqueIdentifier>
+      <UniqueIdentifier>{470DA6F9-4B29-42F7-804A-D1EA7300961E}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -30,7 +30,7 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\ISTransferTest">
-      <UniqueIdentifier>{1EE8F0B2-CC2B-4F99-B95A-9139AD4108F5}</UniqueIdentifier>
+      <UniqueIdentifier>{E80DFCA2-3FF2-46F4-AB82-2F1BFEAF9669}</UniqueIdentifier>
     </Filter>
     <ClCompile Include="..\..\Source\ISTransferTest\EnemyAgent1.cpp">
       <Filter>Source\ISTransferTest</Filter>
@@ -69,6 +69,12 @@
       <Filter>Source\ISTransferTest</Filter>
     </ClCompile>
     <ClInclude Include="..\..\Source\ISTransferTest\ISTransferTestProjectile.h">
+      <Filter>Source\ISTransferTest</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\ISTransferTest\PlanningAgent.cpp">
+      <Filter>Source\ISTransferTest</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\ISTransferTest\PlanningAgent.h">
       <Filter>Source\ISTransferTest</Filter>
     </ClInclude>
     <ClCompile Include="..\..\Source\ISTransferTest\SpawnPoint.cpp">

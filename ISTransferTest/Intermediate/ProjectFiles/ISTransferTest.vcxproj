@@ -621,6 +621,8 @@
     <ClInclude Include="..\..\Source\ISTransferTest\ISTransferTestHUD.h"/>
     <ClCompile Include="..\..\Source\ISTransferTest\ISTransferTestProjectile.cpp"/>
     <ClInclude Include="..\..\Source\ISTransferTest\ISTransferTestProjectile.h"/>
+    <ClCompile Include="..\..\Source\ISTransferTest\PlanningAgent.cpp"/>
+    <ClInclude Include="..\..\Source\ISTransferTest\PlanningAgent.h"/>
     <ClCompile Include="..\..\Source\ISTransferTest\SpawnPoint.cpp"/>
     <ClInclude Include="..\..\Source\ISTransferTest\SpawnPoint.h"/>
   </ItemGroup>
