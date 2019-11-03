@@ -82,6 +82,36 @@ AISTransferTestCharacter::AISTransferTestCharacter()
 
 	// Uncomment the following line to turn motion controllers on by default:
 	//bUsingMotionControllers = true;
+
+	// Initialize the player health
+	m_maxHealth = 100;
+	m_currHealth = m_maxHealth;
+
+	// Initialize the overheating feature
+	m_maxHeat = 100;
+	m_currHeat = 0;
+	m_isCooling = false;
+}
+
+void AISTransferTestCharacter::TakeDamage(float damage)
+{
+	m_currHealth -= damage;
+}
+
+void AISTransferTestCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (m_currHeat > 0)
+	{
+		m_currHeat -= (30 * DeltaTime);
+
+		if (m_currHeat < 0)
+		{
+			m_currHeat = 0;
+			m_isCooling = false;
+		}
+	}
 }
 
 void AISTransferTestCharacter::BeginPlay()
@@ -141,7 +171,7 @@ void AISTransferTestCharacter::SetupPlayerInputComponent(class UInputComponent* 
 void AISTransferTestCharacter::OnFire()
 {
 	// try and fire a projectile
-	if (ProjectileClass != NULL)
+	if (ProjectileClass != NULL && !m_isCooling)
 	{
 		UWorld* const World = GetWorld();
 		if (World != NULL)
@@ -160,22 +190,29 @@ void AISTransferTestCharacter::OnFire()
 
 				//Set Spawn Collision Handling Override
 				FActorSpawnParameters ActorSpawnParams;
-				ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButDontSpawnIfColliding;
+				ActorSpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
 				// spawn the projectile at the muzzle
 				World->SpawnActor<AISTransferTestProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
+
+				m_currHeat += 15;
+
+				if (m_currHeat >= m_maxHeat)
+				{
+					m_isCooling = true;
+				}
 			}
 		}
 	}
 
 	// try and play the sound if specified
-	if (FireSound != NULL)
+	if (FireSound != NULL && !m_isCooling)
 	{
 		UGameplayStatics::PlaySoundAtLocation(this, FireSound, GetActorLocation());
 	}
 
 	// try and play a firing animation if specified
-	if (FireAnimation != NULL)
+	if (FireAnimation != NULL && !m_isCooling)
 	{
 		// Get the animation object for the arms mesh
 		UAnimInstance* AnimInstance = Mesh1P->GetAnimInstance();

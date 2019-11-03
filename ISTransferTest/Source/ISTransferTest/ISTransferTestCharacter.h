@@ -48,8 +48,26 @@ class AISTransferTestCharacter : public ACharacter
 public:
 	AISTransferTestCharacter();
 
+	void TakeDamage(float damage);
+
+	virtual void Tick(float DeltaTime);
+
 protected:
 	virtual void BeginPlay();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
+	float m_currHealth;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Health")
+	float m_maxHealth;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Overheat")
+	float m_currHeat;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Overheat")
+	float m_maxHeat;
+
+	bool m_isCooling;
 
 public:
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */

@@ -70,6 +70,22 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTestCharacter() {}
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_BaseTurnRate;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_maxHeat_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_m_maxHeat;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_currHeat_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_m_currHeat;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_maxHealth_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_m_maxHealth;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_currHealth_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_m_currHealth;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_L_MotionController_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_L_MotionController;
@@ -184,6 +200,34 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTestCharacter() {}
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_BaseTurnRate = { "BaseTurnRate", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AISTransferTestCharacter, BaseTurnRate), METADATA_PARAMS(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_BaseTurnRate_MetaData, ARRAY_COUNT(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_BaseTurnRate_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_maxHeat_MetaData[] = {
+		{ "Category", "Overheat" },
+		{ "ModuleRelativePath", "ISTransferTestCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_maxHeat = { "m_maxHeat", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AISTransferTestCharacter, m_maxHeat), METADATA_PARAMS(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_maxHeat_MetaData, ARRAY_COUNT(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_maxHeat_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_currHeat_MetaData[] = {
+		{ "Category", "Overheat" },
+		{ "ModuleRelativePath", "ISTransferTestCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_currHeat = { "m_currHeat", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AISTransferTestCharacter, m_currHeat), METADATA_PARAMS(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_currHeat_MetaData, ARRAY_COUNT(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_currHeat_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_maxHealth_MetaData[] = {
+		{ "Category", "Health" },
+		{ "ModuleRelativePath", "ISTransferTestCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_maxHealth = { "m_maxHealth", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AISTransferTestCharacter, m_maxHealth), METADATA_PARAMS(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_maxHealth_MetaData, ARRAY_COUNT(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_maxHealth_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_currHealth_MetaData[] = {
+		{ "Category", "Health" },
+		{ "ModuleRelativePath", "ISTransferTestCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_currHealth = { "m_currHealth", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AISTransferTestCharacter, m_currHealth), METADATA_PARAMS(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_currHealth_MetaData, ARRAY_COUNT(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_currHealth_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_L_MotionController_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "ISTransferTestCharacter" },
@@ -274,6 +318,10 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTestCharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_GunOffset,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_BaseLookUpRate,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_BaseTurnRate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_maxHeat,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_currHeat,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_maxHealth,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_currHealth,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_L_MotionController,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_R_MotionController,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_FirstPersonCameraComponent,
@@ -310,7 +358,7 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTestCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AISTransferTestCharacter, 2948729195);
+	IMPLEMENT_CLASS(AISTransferTestCharacter, 677801900);
 	template<> ISTRANSFERTEST_API UClass* StaticClass<AISTransferTestCharacter>()
 	{
 		return AISTransferTestCharacter::StaticClass();

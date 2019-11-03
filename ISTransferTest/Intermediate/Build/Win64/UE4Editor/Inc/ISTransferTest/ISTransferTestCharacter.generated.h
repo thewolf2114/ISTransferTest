@@ -65,7 +65,11 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AISTransferTestCharacter); \
 	FORCEINLINE static uint32 __PPO__VR_MuzzleLocation() { return STRUCT_OFFSET(AISTransferTestCharacter, VR_MuzzleLocation); } \
 	FORCEINLINE static uint32 __PPO__FirstPersonCameraComponent() { return STRUCT_OFFSET(AISTransferTestCharacter, FirstPersonCameraComponent); } \
 	FORCEINLINE static uint32 __PPO__R_MotionController() { return STRUCT_OFFSET(AISTransferTestCharacter, R_MotionController); } \
-	FORCEINLINE static uint32 __PPO__L_MotionController() { return STRUCT_OFFSET(AISTransferTestCharacter, L_MotionController); }
+	FORCEINLINE static uint32 __PPO__L_MotionController() { return STRUCT_OFFSET(AISTransferTestCharacter, L_MotionController); } \
+	FORCEINLINE static uint32 __PPO__m_currHealth() { return STRUCT_OFFSET(AISTransferTestCharacter, m_currHealth); } \
+	FORCEINLINE static uint32 __PPO__m_maxHealth() { return STRUCT_OFFSET(AISTransferTestCharacter, m_maxHealth); } \
+	FORCEINLINE static uint32 __PPO__m_currHeat() { return STRUCT_OFFSET(AISTransferTestCharacter, m_currHeat); } \
+	FORCEINLINE static uint32 __PPO__m_maxHeat() { return STRUCT_OFFSET(AISTransferTestCharacter, m_maxHeat); }
 
 
 #define ISTransferTest_Source_ISTransferTest_ISTransferTestCharacter_h_11_PROLOG
