@@ -119,6 +119,10 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTestProjectile() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam Class_MetaDataParams[];
 #endif
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_damage_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FUnsizedIntPropertyParams NewProp_m_damage;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_ProjectileMovement_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_ProjectileMovement;
@@ -144,6 +148,13 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTestProjectile() {}
 	};
 #endif
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AISTransferTestProjectile_Statics::NewProp_m_damage_MetaData[] = {
+		{ "Category", "Damage" },
+		{ "ModuleRelativePath", "ISTransferTestProjectile.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_AISTransferTestProjectile_Statics::NewProp_m_damage = { "m_damage", nullptr, (EPropertyFlags)0x0040000000000001, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AISTransferTestProjectile, m_damage), METADATA_PARAMS(Z_Construct_UClass_AISTransferTestProjectile_Statics::NewProp_m_damage_MetaData, ARRAY_COUNT(Z_Construct_UClass_AISTransferTestProjectile_Statics::NewProp_m_damage_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AISTransferTestProjectile_Statics::NewProp_ProjectileMovement_MetaData[] = {
 		{ "AllowPrivateAccess", "true" },
 		{ "Category", "Movement" },
@@ -165,6 +176,7 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTestProjectile() {}
 #endif
 	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AISTransferTestProjectile_Statics::NewProp_CollisionComp = { "CollisionComp", nullptr, (EPropertyFlags)0x00400000000b0009, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AISTransferTestProjectile, CollisionComp), Z_Construct_UClass_USphereComponent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AISTransferTestProjectile_Statics::NewProp_CollisionComp_MetaData, ARRAY_COUNT(Z_Construct_UClass_AISTransferTestProjectile_Statics::NewProp_CollisionComp_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AISTransferTestProjectile_Statics::PropPointers[] = {
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestProjectile_Statics::NewProp_m_damage,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestProjectile_Statics::NewProp_ProjectileMovement,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestProjectile_Statics::NewProp_CollisionComp,
 	};
@@ -195,7 +207,7 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTestProjectile() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AISTransferTestProjectile, 3109660559);
+	IMPLEMENT_CLASS(AISTransferTestProjectile, 3994776674);
 	template<> ISTRANSFERTEST_API UClass* StaticClass<AISTransferTestProjectile>()
 	{
 		return AISTransferTestProjectile::StaticClass();

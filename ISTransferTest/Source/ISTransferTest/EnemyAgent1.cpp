@@ -24,6 +24,8 @@ AEnemyAgent1::AEnemyAgent1()
 	m_aggression = 0;
 	m_isAttacking = false;
 	m_playerReached = false;
+
+	m_damage = 1;
 }
 
 // Called when the game starts or when spawned

@@ -97,7 +97,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AISTransferTestProjectile); \
 
 #define ISTransferTest_Source_ISTransferTest_ISTransferTestProjectile_h_12_PRIVATE_PROPERTY_OFFSET \
 	FORCEINLINE static uint32 __PPO__CollisionComp() { return STRUCT_OFFSET(AISTransferTestProjectile, CollisionComp); } \
-	FORCEINLINE static uint32 __PPO__ProjectileMovement() { return STRUCT_OFFSET(AISTransferTestProjectile, ProjectileMovement); }
+	FORCEINLINE static uint32 __PPO__ProjectileMovement() { return STRUCT_OFFSET(AISTransferTestProjectile, ProjectileMovement); } \
+	FORCEINLINE static uint32 __PPO__m_damage() { return STRUCT_OFFSET(AISTransferTestProjectile, m_damage); }
 
 
 #define ISTransferTest_Source_ISTransferTest_ISTransferTestProjectile_h_9_PROLOG
