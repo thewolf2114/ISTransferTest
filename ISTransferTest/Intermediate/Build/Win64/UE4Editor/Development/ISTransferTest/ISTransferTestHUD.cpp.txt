@@ -1,11 +1,11 @@
-C:\Users\Rion Cole\Desktop\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\Definitions.ISTransferTest.h
-c:\users\rion cole\desktop\istransfertest\source\istransfertest\ISTransferTestHUD.h
+C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\Definitions.ISTransferTest.h
+c:\users\rion cole\desktop\istest\istransfertest\source\istransfertest\ISTransferTestHUD.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/HUD.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/HUDHitBox.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/DebugTextInfo.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\DebugTextInfo.generated.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\HUD.generated.h
-C:\Users\Rion Cole\Desktop\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Inc\ISTransferTest\ISTransferTestHUD.generated.h
+C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Inc\ISTransferTest\ISTransferTestHUD.generated.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Classes\Engine/Canvas.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Public\CanvasItem.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Classes\Engine/Font.h

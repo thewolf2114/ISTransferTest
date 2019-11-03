@@ -66,4 +66,14 @@
       <Filter>Source\ISTransferTest</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Source\ISTransferTest\EnemyAgent1.h">
+      <Filter>Source\ISTransferTest</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Source\ISTransferTest\EnemyAgent1.cpp">
+      <Filter>Source\ISTransferTest</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

@@ -1,3 +1,3 @@
-C:\Users\Rion Cole\Desktop\ISTransferTest\Source\ISTransferTest\ISTransferTest.Build.cs
-C:\Users\Rion Cole\Desktop\ISTransferTest\Source\ISTransferTest.Target.cs
-C:\Users\Rion Cole\Desktop\ISTransferTest\Source\ISTransferTestEditor.Target.cs
+C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Source\ISTransferTest\ISTransferTest.Build.cs
+C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Source\ISTransferTest.Target.cs
+C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Source\ISTransferTestEditor.Target.cs

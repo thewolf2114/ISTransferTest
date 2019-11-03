@@ -1,12 +1,12 @@
-C:\Users\Rion Cole\Desktop\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\Definitions.ISTransferTest.h
-c:\users\rion cole\desktop\istransfertest\source\istransfertest\ISTransferTestCharacter.h
+C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\Definitions.ISTransferTest.h
+c:\users\rion cole\desktop\istest\istransfertest\source\istransfertest\ISTransferTestCharacter.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/Character.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFramework/RootMotionSource.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
-C:\Users\Rion Cole\Desktop\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Inc\ISTransferTest\ISTransferTestCharacter.generated.h
-c:\users\rion cole\desktop\istransfertest\source\istransfertest\ISTransferTestProjectile.h
-C:\Users\Rion Cole\Desktop\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Inc\ISTransferTest\ISTransferTestProjectile.generated.h
+C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Inc\ISTransferTest\ISTransferTestCharacter.generated.h
+c:\users\rion cole\desktop\istest\istransfertest\source\istransfertest\ISTransferTestProjectile.h
+C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Inc\ISTransferTest\ISTransferTestProjectile.generated.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Classes\Camera/CameraComponent.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\CameraComponent.generated.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Classes\Components/CapsuleComponent.h
