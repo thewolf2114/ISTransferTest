@@ -33,7 +33,7 @@ void APlanningAgent::BeginPlay()
 	for (TActorIterator<ASpawnPoint> ActorITR(GetWorld()); ActorITR; ++ActorITR)
 	{
 		ASpawnPoint* spawnPoint = *ActorITR;
-		m_spawnPoints.Add(*spawnPoint);
+		m_spawnPoints.Add(spawnPoint);
 	}
 }
 
@@ -51,11 +51,13 @@ void APlanningAgent::Tick(float DeltaTime)
 void APlanningAgent::DetectShot()
 {
 	m_shootCount++;
+	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Yellow, "Shot Detected");
 }
 
 void APlanningAgent::DetectJump()
 {
 	m_jumpCount++;
+	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Yellow, "Jump Detected");
 }
 
 void APlanningAgent::MoveForward(float value)

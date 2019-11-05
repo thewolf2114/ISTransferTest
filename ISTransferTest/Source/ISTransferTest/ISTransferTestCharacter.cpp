@@ -2,6 +2,7 @@
 
 #include "ISTransferTestCharacter.h"
 #include "ISTransferTestProjectile.h"
+#include "PlanningAgent.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -11,6 +12,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "MotionControllerComponent.h"
 #include "XRMotionControllerBase.h" // for FXRMotionControllerBase::RightHandSourceId
+#include "Engine.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
@@ -166,6 +168,10 @@ void AISTransferTestCharacter::SetupPlayerInputComponent(class UInputComponent* 
 	PlayerInputComponent->BindAxis("TurnRate", this, &AISTransferTestCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AISTransferTestCharacter::LookUpAtRate);
+
+	// Bind some input to the planning agent
+	PlayerInputComponent->BindAction("Fire", IE_Pressed, m_planningAgent, &APlanningAgent::DetectShot);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, m_planningAgent, &APlanningAgent::DetectJump);
 }
 
 void AISTransferTestCharacter::OnFire()

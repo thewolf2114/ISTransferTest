@@ -34,7 +34,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Spawn Enemy")
 	TSubclassOf<class AEnemyAgent1> m_enemyClass;
-	TArray<ASpawnPoint> m_spawnPoints;
+	TArray<ASpawnPoint*> m_spawnPoints;
 
 	// Calculates the players frustration level
 	void CalcFrustration();

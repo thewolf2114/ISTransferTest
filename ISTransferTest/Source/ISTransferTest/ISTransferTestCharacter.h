@@ -69,6 +69,9 @@ protected:
 
 	bool m_isCooling;
 
+	UPROPERTY(EditAnywhere, Category = "Binding")
+	class APlanningAgent* m_planningAgent;
+
 public:
 	/** Base turn rate, in deg/sec. Other scaling may affect final turn rate. */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)

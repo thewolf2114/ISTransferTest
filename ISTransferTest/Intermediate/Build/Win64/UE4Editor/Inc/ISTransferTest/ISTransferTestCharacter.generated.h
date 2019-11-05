@@ -69,7 +69,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(AISTransferTestCharacter); \
 	FORCEINLINE static uint32 __PPO__m_currHealth() { return STRUCT_OFFSET(AISTransferTestCharacter, m_currHealth); } \
 	FORCEINLINE static uint32 __PPO__m_maxHealth() { return STRUCT_OFFSET(AISTransferTestCharacter, m_maxHealth); } \
 	FORCEINLINE static uint32 __PPO__m_currHeat() { return STRUCT_OFFSET(AISTransferTestCharacter, m_currHeat); } \
-	FORCEINLINE static uint32 __PPO__m_maxHeat() { return STRUCT_OFFSET(AISTransferTestCharacter, m_maxHeat); }
+	FORCEINLINE static uint32 __PPO__m_maxHeat() { return STRUCT_OFFSET(AISTransferTestCharacter, m_maxHeat); } \
+	FORCEINLINE static uint32 __PPO__m_planningAgent() { return STRUCT_OFFSET(AISTransferTestCharacter, m_planningAgent); }
 
 
 #define ISTransferTest_Source_ISTransferTest_ISTransferTestCharacter_h_11_PROLOG

@@ -6,4 +6,4 @@ C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFra
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Classes\Engine/ServerStatReplicator.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\ServerStatReplicator.generated.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\GameModeBase.generated.h
-c:\users\rion cole\desktop\istest\istransfertest\intermediate\build\win64\ue4editor\inc\istransfertest\ISTransferTestGameMode.generated.h
+C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Inc\ISTransferTest\ISTransferTestGameMode.generated.h

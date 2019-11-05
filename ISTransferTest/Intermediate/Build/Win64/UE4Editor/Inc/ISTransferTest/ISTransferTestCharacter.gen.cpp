@@ -22,6 +22,7 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTestCharacter() {}
 	COREUOBJECT_API UClass* Z_Construct_UClass_UClass();
 	ISTRANSFERTEST_API UClass* Z_Construct_UClass_AISTransferTestProjectile_NoRegister();
 	COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
+	ISTRANSFERTEST_API UClass* Z_Construct_UClass_APlanningAgent_NoRegister();
 	HEADMOUNTEDDISPLAY_API UClass* Z_Construct_UClass_UMotionControllerComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 	ENGINE_API UClass* Z_Construct_UClass_USceneComponent_NoRegister();
@@ -69,6 +70,10 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTestCharacter() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_BaseTurnRate_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_BaseTurnRate;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_planningAgent_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FObjectPropertyParams NewProp_m_planningAgent;
 #if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_maxHeat_MetaData[];
 #endif
@@ -200,6 +205,13 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTestCharacter() {}
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_BaseTurnRate = { "BaseTurnRate", nullptr, (EPropertyFlags)0x0010000000020015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AISTransferTestCharacter, BaseTurnRate), METADATA_PARAMS(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_BaseTurnRate_MetaData, ARRAY_COUNT(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_BaseTurnRate_MetaData)) };
 #if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_planningAgent_MetaData[] = {
+		{ "Category", "Binding" },
+		{ "ModuleRelativePath", "ISTransferTestCharacter.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_planningAgent = { "m_planningAgent", nullptr, (EPropertyFlags)0x0020080000000001, UE4CodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(AISTransferTestCharacter, m_planningAgent), Z_Construct_UClass_APlanningAgent_NoRegister, METADATA_PARAMS(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_planningAgent_MetaData, ARRAY_COUNT(Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_planningAgent_MetaData)) };
+#if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_maxHeat_MetaData[] = {
 		{ "Category", "Overheat" },
 		{ "ModuleRelativePath", "ISTransferTestCharacter.h" },
@@ -318,6 +330,7 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTestCharacter() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_GunOffset,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_BaseLookUpRate,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_BaseTurnRate,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_planningAgent,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_maxHeat,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_currHeat,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AISTransferTestCharacter_Statics::NewProp_m_maxHealth,
@@ -358,7 +371,7 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTestCharacter() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(AISTransferTestCharacter, 677801900);
+	IMPLEMENT_CLASS(AISTransferTestCharacter, 4253621570);
 	template<> ISTRANSFERTEST_API UClass* StaticClass<AISTransferTestCharacter>()
 	{
 		return AISTransferTestCharacter::StaticClass();
