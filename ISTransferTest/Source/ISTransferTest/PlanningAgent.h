@@ -20,10 +20,20 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	// Constants
+	const int AVERAGE_SHOOT = 10;
+	const int AVERAGE_JUMP = 10;
+
 	// Frustration variables
 	float m_frustration;
 	int m_jumpCount;
 	int m_shootCount;
+
+	// Frustration weights
+	float m_jumpWeight;
+	float m_shootWeight;
+	float m_moveWeight;
+	float m_turnWeight;
 
 	// Enemy creation variables
 	int m_maxEnemies;
@@ -38,6 +48,12 @@ protected:
 
 	// Calculates the players frustration level
 	void CalcFrustration();
+
+	// Calculate frustration variables
+	void CalcShootFrustration();
+	void CalcJumpFrustration();
+	void CalcWalkFrustration();
+	void CalcTurnFrustration();
 
 public:	
 	// Called every frame

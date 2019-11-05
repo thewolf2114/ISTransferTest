@@ -17,6 +17,12 @@ APlanningAgent::APlanningAgent()
 	m_jumpCount = 0;
 	m_shootCount = 0;
 
+	// Frustration Weights
+	m_jumpWeight = 0;
+	m_shootWeight = 0;
+	m_moveWeight = 0;
+	m_turnWeight = 0;
+
 	// Enemy creation variables
 	m_maxEnemies = 10;
 	m_currEnemies = 0;
@@ -38,6 +44,22 @@ void APlanningAgent::BeginPlay()
 }
 
 void APlanningAgent::CalcFrustration()
+{
+}
+
+void APlanningAgent::CalcShootFrustration()
+{
+}
+
+void APlanningAgent::CalcJumpFrustration()
+{
+}
+
+void APlanningAgent::CalcWalkFrustration()
+{
+}
+
+void APlanningAgent::CalcTurnFrustration()
 {
 }
 
