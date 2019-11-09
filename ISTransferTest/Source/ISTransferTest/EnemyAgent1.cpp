@@ -28,6 +28,14 @@ AEnemyAgent1::AEnemyAgent1()
 	m_damage = 1;
 }
 
+void AEnemyAgent1::SetVariables(float health, float speed, float aggression)
+{
+	m_health = health;
+	m_speed = speed;
+	m_characterMovement->MaxWalkSpeed = m_speed;
+	m_aggression = aggression;
+}
+
 // Called when the game starts or when spawned
 void AEnemyAgent1::BeginPlay()
 {
@@ -85,23 +93,6 @@ void AEnemyAgent1::OnAttackStateUpdate()
 void AEnemyAgent1::OnAttackStateExit()
 {
 	// Reset annimation
-}
-
-void AEnemyAgent1::SetSpeed(float speed)
-{
-	m_speed = speed;
-
-	m_characterMovement->MaxWalkSpeed = m_speed;
-}
-
-void AEnemyAgent1::SetHealth(float health)
-{
-	m_health = health;
-}
-
-void AEnemyAgent1::SetAggression(float aggression)
-{
-	m_aggression = aggression;
 }
 
 void AEnemyAgent1::OnAttackingPlayer(AActor * SelfActor, AActor * OtherActor, FVector NormalImpulse, const FHitResult & Hit)

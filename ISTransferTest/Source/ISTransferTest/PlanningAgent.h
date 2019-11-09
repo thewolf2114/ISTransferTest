@@ -23,22 +23,31 @@ protected:
 	// Constants
 	const float JUMP_WEIGHT = 0;
 	const float SHOOT_WEIGHT = 0;
-	const float MOVE_WEIGHT = 0;
-	const float TURN_WEIGHT = 0;
-	const int TIMER = 5;
+	const float MOVE_BACK_WEIGHT = 0;
+	const float ZIG_ZAG_WEIGHT = 0;
+	const float MOVE_BACK_TIMER = 0.5;
+	const int RESET_TIMER = 5;
 
 	// Timer
 	float m_resetTimer;
+	float m_moveBackTimer;
 
 	// Frustration variables
 	float m_currFrustration;
 	float m_prevFrustration;
 	float m_shootFrustration;
 	float m_jumpFrustration;
+	float m_moveBackFrustration;
+	float m_zigZagFrustration;
 	int m_jumpCount;
 	int m_shootCount;
+	int m_moveBackCount;
+	int m_zigZagCount;
+	int m_prevZigZagValue;
 	int m_maxShoot;
 	int m_maxJump;
+	int m_maxMoveBack;
+	int m_maxZigZag;
 
 	// Enemy creation variables
 	int m_maxEnemies;
@@ -57,8 +66,8 @@ protected:
 	// Calculate frustration variables
 	void CalcShootFrustration();
 	void CalcJumpFrustration();
-	void CalcWalkFrustration();
-	void CalcTurnFrustration();
+	void CalcMoveBackFrustration();
+	void CalcZigZagFrustration();
 
 	// Spawn the enemy
 	void SpawnEnemy();

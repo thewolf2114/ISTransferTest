@@ -15,6 +15,8 @@ public:
 	// Sets default values for this character's properties
 	AEnemyAgent1();
 
+	void SetVariables(float health, float speed, float aggression);
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -30,10 +32,6 @@ protected:
 	//virtual void OnDeadStateExit();
 
 	//virtual void ChangeState();
-
-	virtual void SetSpeed(float speed);
-	virtual void SetHealth(float health);
-	virtual void SetAggression(float aggression);
 
 	UFUNCTION()
 	void OnAttackingPlayer(AActor * SelfActor, AActor * OtherActor, FVector NormalImpulse, const FHitResult & Hit);

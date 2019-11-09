@@ -6,6 +6,8 @@
 #include "ISTransferTestCharacter.h"
 #include "Containers/Array.h"
 #include "Engine.h"
+#include "Engine/World.h"
+#include "GameFramework/Actor.h"
 
 // Sets default values
 APlanningAgent::APlanningAgent()
@@ -18,10 +20,16 @@ APlanningAgent::APlanningAgent()
 	m_prevFrustration = 0;
 	m_shootFrustration = 0;
 	m_jumpFrustration = 0;
+	m_moveBackFrustration = 0;
+	m_zigZagFrustration = 0;
 	m_jumpCount = 0;
 	m_shootCount = 0;
+	m_moveBackCount = 0;
+	m_zigZagCount = 0;
 	m_maxShoot = 10;
 	m_maxJump = 10;
+	m_maxMoveBack = 10;
+	m_maxZigZag = 10;
 
 	// Enemy creation variables
 	m_maxEnemies = 10;
@@ -31,7 +39,8 @@ APlanningAgent::APlanningAgent()
 	m_enemySpeed = 500;
 
 	// Timer
-	m_resetTimer = TIMER;
+	m_resetTimer = RESET_TIMER;
+	m_moveBackTimer = MOVE_BACK_TIMER;
 }
 
 // Called when the game starts or when spawned
@@ -48,6 +57,15 @@ void APlanningAgent::BeginPlay()
 
 void APlanningAgent::CalcFrustration()
 {
+	m_prevFrustration = m_currFrustration;
+
+	CalcShootFrustration();
+	CalcJumpFrustration();
+	CalcMoveBackFrustration();
+	CalcZigZagFrustration();
+
+	m_currFrustration = (m_shootFrustration * SHOOT_WEIGHT) + (m_jumpFrustration * JUMP_WEIGHT) + (m_moveBackFrustration * MOVE_BACK_WEIGHT) + (m_zigZagFrustration * ZIG_ZAG_WEIGHT);
+	m_currFrustration *= m_currFrustration;
 }
 
 void APlanningAgent::CalcShootFrustration()
@@ -70,32 +88,41 @@ void APlanningAgent::CalcJumpFrustration()
 	m_jumpFrustration = m_jumpCount / m_maxJump;
 }
 
-void APlanningAgent::CalcWalkFrustration()
+void APlanningAgent::CalcMoveBackFrustration()
 {
+	m_moveBackFrustration = m_moveBackCount / m_maxMoveBack;
 }
 
-void APlanningAgent::CalcTurnFrustration()
+void APlanningAgent::CalcZigZagFrustration()
 {
+	if (m_zigZagCount > m_maxZigZag)
+	{
+		m_maxZigZag = m_zigZagCount;
+	}
+
+	m_zigZagFrustration = m_zigZagCount / m_maxZigZag;
 }
 
 void APlanningAgent::SpawnEnemy()
 {
-	UWorld* const world = GetWorld();
+	UWorld* const World = GetWorld();
 
-	if (world != NULL)
+	if (World != NULL)
 	{
 		FRotator rotation;
 		FVector location;
 		FActorSpawnParameters spawnParams;
 
-		FVector spawnDirection;
+		APlayerController* player = World->GetFirstPlayerController();
 
-		APlayerController* player = world->GetFirstPlayerController();
+		int32 rand = FMath::RandRange(0, m_spawnPoints.Num() - 1);
 
-		for (int32 i = 0; i < m_spawnPoints.Num(); i++)
-		{
+		rotation = m_spawnPoints[rand]->GetActorRotation();
+		location = m_spawnPoints[rand]->GetActorLocation();
+		spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-		}
+		AEnemyAgent1* enemy = World->SpawnActor<AEnemyAgent1>(m_enemyClass, location, rotation, spawnParams);
+		enemy->SetVariables(m_enemyHealth, m_enemySpeed, m_enemyAggression);
 	}
 }
 
@@ -108,13 +135,17 @@ void APlanningAgent::Tick(float DeltaTime)
 
 	if (m_resetTimer <= 0)
 	{
-		m_resetTimer = TIMER;
+		m_resetTimer = RESET_TIMER;
 
 		m_shootCount = 0;
 		m_jumpCount = 0;
+		m_moveBackCount = 0;
+		m_zigZagCount = 0;
+
+		CalcFrustration();
 	}
 
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("Jump Count: %d"), m_jumpCount));
+	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("Zig Zag Count: %d"), m_zigZagCount));
 }
 
 void APlanningAgent::DetectShot()
@@ -129,9 +160,34 @@ void APlanningAgent::DetectJump()
 
 void APlanningAgent::MoveForward(float value)
 {
+	if (value < 0)
+	{
+		m_moveBackTimer -= GetWorld()->DeltaTimeSeconds;
+
+		if (m_moveBackTimer <= 0)
+		{
+			m_moveBackTimer = MOVE_BACK_TIMER;
+			m_moveBackCount++;
+		}
+	}
+	else
+	{
+		m_moveBackTimer = MOVE_BACK_TIMER;
+	}
 }
 
 void APlanningAgent::MoveRight(float value)
 {
+	if (value != 0 && m_prevZigZagValue == 0 && floor(value) == value)
+	{
+		m_prevZigZagValue = value;
+	}
+
+	if (value != 0 && m_prevZigZagValue == -value)
+	{
+		m_zigZagCount++;
+
+		m_prevZigZagValue = value;
+	}
 }
 

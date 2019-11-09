@@ -179,6 +179,8 @@ void AISTransferTestCharacter::SetupPlayerInputComponent(class UInputComponent* 
 	// Bind some input to the planning agent
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, m_planningAgent, &APlanningAgent::DetectShot);
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, m_planningAgent, &APlanningAgent::DetectJump);
+	PlayerInputComponent->BindAxis("MoveForward", m_planningAgent, &APlanningAgent::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", m_planningAgent, &APlanningAgent::MoveRight);
 }
 
 void AISTransferTestCharacter::OnFire()
