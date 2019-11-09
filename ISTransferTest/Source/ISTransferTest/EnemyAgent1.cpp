@@ -87,6 +87,23 @@ void AEnemyAgent1::OnAttackStateExit()
 	// Reset annimation
 }
 
+void AEnemyAgent1::SetSpeed(float speed)
+{
+	m_speed = speed;
+
+	m_characterMovement->MaxWalkSpeed = m_speed;
+}
+
+void AEnemyAgent1::SetHealth(float health)
+{
+	m_health = health;
+}
+
+void AEnemyAgent1::SetAggression(float aggression)
+{
+	m_aggression = aggression;
+}
+
 void AEnemyAgent1::OnAttackingPlayer(AActor * SelfActor, AActor * OtherActor, FVector NormalImpulse, const FHitResult & Hit)
 {
 	if (AISTransferTestCharacter* player = Cast<AISTransferTestCharacter>(OtherActor))

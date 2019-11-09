@@ -9,6 +9,8 @@ C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Classes\GameFra
 C:\Program Files\Epic Games\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\RootMotionSource.generated.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\Character.generated.h
 C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Inc\ISTransferTest\EnemyAgent1.generated.h
+C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Source\ISTransferTest\ISTransferTestCharacter.h
+C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Inc\ISTransferTest\ISTransferTestCharacter.generated.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Engine\Public\Engine.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Core\Public\Misc/MonolithicHeaderBoilerplate.h
 C:\Program Files\Epic Games\UE_4.23\Engine\Source\Runtime\Core\Public\Core.h

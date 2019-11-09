@@ -21,19 +21,24 @@ protected:
 	virtual void BeginPlay() override;
 
 	// Constants
-	const int AVERAGE_SHOOT = 10;
-	const int AVERAGE_JUMP = 10;
+	const float JUMP_WEIGHT = 0;
+	const float SHOOT_WEIGHT = 0;
+	const float MOVE_WEIGHT = 0;
+	const float TURN_WEIGHT = 0;
+	const int TIMER = 5;
+
+	// Timer
+	float m_resetTimer;
 
 	// Frustration variables
-	float m_frustration;
+	float m_currFrustration;
+	float m_prevFrustration;
+	float m_shootFrustration;
+	float m_jumpFrustration;
 	int m_jumpCount;
 	int m_shootCount;
-
-	// Frustration weights
-	float m_jumpWeight;
-	float m_shootWeight;
-	float m_moveWeight;
-	float m_turnWeight;
+	int m_maxShoot;
+	int m_maxJump;
 
 	// Enemy creation variables
 	int m_maxEnemies;
@@ -54,6 +59,9 @@ protected:
 	void CalcJumpFrustration();
 	void CalcWalkFrustration();
 	void CalcTurnFrustration();
+
+	// Spawn the enemy
+	void SpawnEnemy();
 
 public:	
 	// Called every frame

@@ -106,7 +106,14 @@ void AISTransferTestCharacter::Tick(float DeltaTime)
 
 	if (m_currHeat > 0)
 	{
-		m_currHeat -= (30 * DeltaTime);
+		if (!m_isCooling)
+		{
+			m_currHeat -= (20 * DeltaTime);
+		}
+		else
+		{
+			m_currHeat -= (50 * DeltaTime);
+		}
 
 		if (m_currHeat < 0)
 		{
@@ -201,7 +208,7 @@ void AISTransferTestCharacter::OnFire()
 				// spawn the projectile at the muzzle
 				World->SpawnActor<AISTransferTestProjectile>(ProjectileClass, SpawnLocation, SpawnRotation, ActorSpawnParams);
 
-				m_currHeat += 15;
+				m_currHeat += 10;
 
 				if (m_currHeat >= m_maxHeat)
 				{

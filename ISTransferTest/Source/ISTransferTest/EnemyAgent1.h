@@ -31,6 +31,10 @@ protected:
 
 	//virtual void ChangeState();
 
+	virtual void SetSpeed(float speed);
+	virtual void SetHealth(float health);
+	virtual void SetAggression(float aggression);
+
 	UFUNCTION()
 	void OnAttackingPlayer(AActor * SelfActor, AActor * OtherActor, FVector NormalImpulse, const FHitResult & Hit);
 
