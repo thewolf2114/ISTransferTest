@@ -21,16 +21,24 @@ protected:
 	virtual void BeginPlay() override;
 
 	// Constants
-	const float JUMP_WEIGHT = 0;
-	const float SHOOT_WEIGHT = 0;
-	const float MOVE_BACK_WEIGHT = 0;
-	const float ZIG_ZAG_WEIGHT = 0;
+	const float JUMP_WEIGHT = 0.2;
+	const float SHOOT_WEIGHT = 0.25;
+	const float MOVE_BACK_WEIGHT = 0.3;
+	const float ZIG_ZAG_WEIGHT = 0.25;
 	const float MOVE_BACK_TIMER = 0.5;
 	const int RESET_TIMER = 5;
+	const int SPAWN_TIMER = 1;
+	const int COOL_DOWN_TIMER = 30;
+	const int DEFAULT_MAX_ENEMY = 10;
+	const int DEFAULT_ENEMY_HEALTH = 100;
+	const int DEFAULT_ENEMY_AGGRESSION = 0;
+	const int DEFAULT_ENEMY_SPEED = 500;
 
 	// Timer
 	float m_resetTimer;
 	float m_moveBackTimer;
+	float m_spawnTimer;
+	float m_coolDownTimer;
 
 	// Frustration variables
 	float m_currFrustration;
@@ -56,6 +64,9 @@ protected:
 	float m_enemyAggression;
 	float m_enemySpeed;
 
+	// Winding down frustration
+	bool m_frustCoolDown;
+
 	UPROPERTY(EditAnywhere, Category = "Spawn Enemy")
 	TSubclassOf<class AEnemyAgent1> m_enemyClass;
 	TArray<ASpawnPoint*> m_spawnPoints;
@@ -80,4 +91,6 @@ public:
 	void DetectJump();
 	void MoveForward(float value);
 	void MoveRight(float value);
+
+	void EnemyDied();
 };

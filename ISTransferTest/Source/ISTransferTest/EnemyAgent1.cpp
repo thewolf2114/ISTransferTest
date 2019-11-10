@@ -3,6 +3,7 @@
 
 #include "EnemyAgent1.h"
 #include "ISTransferTestCharacter.h"
+#include "PlanningAgent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Engine.h"
 #include "Engine/World.h"
@@ -74,7 +75,6 @@ void AEnemyAgent1::OnAttackStateUpdate()
 			if (otherEnemy->IsAttacking())
 			{
 				anotherAttacker = true;
-				GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Yellow, "Enemy Attacking");
 			}
 		}
 
@@ -130,6 +130,14 @@ void AEnemyAgent1::TakeDamage(float damage)
 
 	if (m_health <= 0)
 	{
+		for (TActorIterator<APlanningAgent> ActorITR(GetWorld()); ActorITR; ++ActorITR)
+		{
+			APlanningAgent* planningAgent = *ActorITR;
+			if (planningAgent)
+			{
+				planningAgent->EnemyDied();
+			}
+		}
 
 		Destroy();
 	}

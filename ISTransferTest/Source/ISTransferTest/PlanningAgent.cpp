@@ -32,15 +32,20 @@ APlanningAgent::APlanningAgent()
 	m_maxZigZag = 10;
 
 	// Enemy creation variables
-	m_maxEnemies = 10;
+	m_maxEnemies = DEFAULT_MAX_ENEMY;
 	m_currEnemies = 0;
-	m_enemyHealth = 100;
-	m_enemyAggression = 0;
-	m_enemySpeed = 500;
+	m_enemyHealth = DEFAULT_ENEMY_HEALTH;
+	m_enemyAggression = DEFAULT_ENEMY_AGGRESSION;
+	m_enemySpeed = DEFAULT_ENEMY_SPEED;
 
 	// Timer
 	m_resetTimer = RESET_TIMER;
 	m_moveBackTimer = MOVE_BACK_TIMER;
+	m_spawnTimer = SPAWN_TIMER;
+	m_coolDownTimer = COOL_DOWN_TIMER;
+
+	// Winding Down Frustration
+	m_frustCoolDown = false;
 }
 
 // Called when the game starts or when spawned
@@ -58,6 +63,7 @@ void APlanningAgent::BeginPlay()
 void APlanningAgent::CalcFrustration()
 {
 	m_prevFrustration = m_currFrustration;
+	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("Prev Frustration Level: %f"), m_prevFrustration));
 
 	CalcShootFrustration();
 	CalcJumpFrustration();
@@ -66,6 +72,8 @@ void APlanningAgent::CalcFrustration()
 
 	m_currFrustration = (m_shootFrustration * SHOOT_WEIGHT) + (m_jumpFrustration * JUMP_WEIGHT) + (m_moveBackFrustration * MOVE_BACK_WEIGHT) + (m_zigZagFrustration * ZIG_ZAG_WEIGHT);
 	m_currFrustration *= m_currFrustration;
+
+	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, FString::Printf(TEXT("Curr Frustration Level: %f"), m_currFrustration));
 }
 
 void APlanningAgent::CalcShootFrustration()
@@ -75,7 +83,7 @@ void APlanningAgent::CalcShootFrustration()
 		m_maxShoot = m_shootCount;
 	}
 
-	m_shootFrustration = m_shootCount / m_maxShoot;
+	m_shootFrustration = (float)m_shootCount / m_maxShoot;
 }
 
 void APlanningAgent::CalcJumpFrustration()
@@ -85,12 +93,12 @@ void APlanningAgent::CalcJumpFrustration()
 		m_maxJump = m_jumpCount;
 	}
 
-	m_jumpFrustration = m_jumpCount / m_maxJump;
+	m_jumpFrustration = (float)m_jumpCount / m_maxJump;
 }
 
 void APlanningAgent::CalcMoveBackFrustration()
 {
-	m_moveBackFrustration = m_moveBackCount / m_maxMoveBack;
+	m_moveBackFrustration = (float)m_moveBackCount / m_maxMoveBack;
 }
 
 void APlanningAgent::CalcZigZagFrustration()
@@ -100,7 +108,7 @@ void APlanningAgent::CalcZigZagFrustration()
 		m_maxZigZag = m_zigZagCount;
 	}
 
-	m_zigZagFrustration = m_zigZagCount / m_maxZigZag;
+	m_zigZagFrustration = (float)m_zigZagCount / m_maxZigZag;
 }
 
 void APlanningAgent::SpawnEnemy()
@@ -121,6 +129,8 @@ void APlanningAgent::SpawnEnemy()
 
 		AEnemyAgent1* enemy = World->SpawnActor<AEnemyAgent1>(m_enemyClass, location, rotation, spawnParams);
 		enemy->SetVariables(m_enemyHealth, m_enemySpeed, m_enemyAggression);
+
+		m_currEnemies++;
 	}
 }
 
@@ -129,21 +139,57 @@ void APlanningAgent::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	m_resetTimer -= DeltaTime;
+	m_spawnTimer -= DeltaTime;
 
-	if (m_resetTimer <= 0)
+	if (m_spawnTimer <= 0 && m_currEnemies < m_maxEnemies)
 	{
-		m_resetTimer = RESET_TIMER;
+		m_spawnTimer = SPAWN_TIMER;
 
-		CalcFrustration();
-
-		m_shootCount = 0;
-		m_jumpCount = 0;
-		m_moveBackCount = 0;
-		m_zigZagCount = 0;
+		SpawnEnemy();
 	}
 
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("Zig Zag Count: %d"), m_zigZagCount));
+	if (!m_frustCoolDown)
+	{
+		m_resetTimer -= DeltaTime;
+
+		if (m_resetTimer <= 0)
+		{
+			m_resetTimer = RESET_TIMER;
+
+			CalcFrustration();
+
+			m_shootCount = 0;
+			m_jumpCount = 0;
+			m_moveBackCount = 0;
+			m_zigZagCount = 0;
+
+			if (m_currFrustration < 0.3)
+			{
+				m_maxEnemies++;
+			}
+			else
+			{
+				m_frustCoolDown = true;
+				m_maxEnemies = DEFAULT_MAX_ENEMY;
+				m_enemyHealth = DEFAULT_ENEMY_HEALTH;
+				m_enemyAggression = DEFAULT_ENEMY_AGGRESSION;
+				m_enemySpeed = DEFAULT_ENEMY_SPEED;
+			}
+		}
+	}
+	else
+	{
+		if (m_currEnemies <= m_maxEnemies)
+		{
+			m_coolDownTimer -= DeltaTime;
+
+			if (m_coolDownTimer <= 0)
+			{
+				m_coolDownTimer = COOL_DOWN_TIMER;
+				m_frustCoolDown = false;
+			}
+		}
+	}
 }
 
 void APlanningAgent::DetectShot()
@@ -187,5 +233,10 @@ void APlanningAgent::MoveRight(float value)
 
 		m_prevZigZagValue = value;
 	}
+}
+
+void APlanningAgent::EnemyDied()
+{
+	m_currEnemies--;
 }
 
