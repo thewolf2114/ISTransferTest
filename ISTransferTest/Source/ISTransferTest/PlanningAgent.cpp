@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "PlanningAgent.h"
 #include "EnemyAgent1.h"
 #include "ISTransferTestCharacter.h"
@@ -63,7 +62,7 @@ void APlanningAgent::BeginPlay()
 void APlanningAgent::CalcFrustration()
 {
 	m_prevFrustration = m_currFrustration;
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("Prev Frustration Level: %f"), m_prevFrustration));
+	//GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("Prev Frustration Level: %f"), m_prevFrustration));
 
 	CalcShootFrustration();
 	CalcJumpFrustration();
@@ -73,7 +72,7 @@ void APlanningAgent::CalcFrustration()
 	m_currFrustration = (m_shootFrustration * SHOOT_WEIGHT) + (m_jumpFrustration * JUMP_WEIGHT) + (m_moveBackFrustration * MOVE_BACK_WEIGHT) + (m_zigZagFrustration * ZIG_ZAG_WEIGHT);
 	m_currFrustration *= m_currFrustration;
 
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, FString::Printf(TEXT("Curr Frustration Level: %f"), m_currFrustration));
+	//GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, FString::Printf(TEXT("Curr Frustration Level: %f"), m_currFrustration));
 }
 
 void APlanningAgent::CalcShootFrustration()
@@ -190,6 +189,9 @@ void APlanningAgent::Tick(float DeltaTime)
 			}
 		}
 	}
+
+	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("Max Enemies: %d"), m_maxEnemies));
+	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, FString::Printf(TEXT("Curr Enemies: %d"), m_currEnemies));
 }
 
 void APlanningAgent::DetectShot()
@@ -239,4 +241,3 @@ void APlanningAgent::EnemyDied()
 {
 	m_currEnemies--;
 }
-
