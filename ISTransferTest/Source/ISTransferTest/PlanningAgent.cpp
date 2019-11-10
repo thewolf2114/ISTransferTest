@@ -113,8 +113,6 @@ void APlanningAgent::SpawnEnemy()
 		FVector location;
 		FActorSpawnParameters spawnParams;
 
-		APlayerController* player = World->GetFirstPlayerController();
-
 		int32 rand = FMath::RandRange(0, m_spawnPoints.Num() - 1);
 
 		rotation = m_spawnPoints[rand]->GetActorRotation();
@@ -137,12 +135,12 @@ void APlanningAgent::Tick(float DeltaTime)
 	{
 		m_resetTimer = RESET_TIMER;
 
+		CalcFrustration();
+
 		m_shootCount = 0;
 		m_jumpCount = 0;
 		m_moveBackCount = 0;
 		m_zigZagCount = 0;
-
-		CalcFrustration();
 	}
 
 	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("Zig Zag Count: %d"), m_zigZagCount));
