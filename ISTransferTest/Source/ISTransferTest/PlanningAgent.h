@@ -28,7 +28,7 @@ protected:
 	const float MOVE_BACK_TIMER = 0.5;
 	const int RESET_TIMER = 5;
 	const int SPAWN_TIMER = 1;
-	const int COOL_DOWN_TIMER = 30;
+	const int COOL_DOWN_TIMER = 10;
 	const int DEFAULT_MAX_ENEMY = 10;
 	const int DEFAULT_ENEMY_HEALTH = 100;
 	const int DEFAULT_ENEMY_AGGRESSION = 0;

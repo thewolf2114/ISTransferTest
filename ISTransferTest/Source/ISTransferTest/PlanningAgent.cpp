@@ -62,7 +62,7 @@ void APlanningAgent::BeginPlay()
 void APlanningAgent::CalcFrustration()
 {
 	m_prevFrustration = m_currFrustration;
-	//GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("Prev Frustration Level: %f"), m_prevFrustration));
+	//GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Purple, FString::Printf(TEXT("Prev Frustration Level: %f"), m_prevFrustration));
 
 	CalcShootFrustration();
 	CalcJumpFrustration();
@@ -72,7 +72,7 @@ void APlanningAgent::CalcFrustration()
 	m_currFrustration = (m_shootFrustration * SHOOT_WEIGHT) + (m_jumpFrustration * JUMP_WEIGHT) + (m_moveBackFrustration * MOVE_BACK_WEIGHT) + (m_zigZagFrustration * ZIG_ZAG_WEIGHT);
 	m_currFrustration *= m_currFrustration;
 
-	//GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, FString::Printf(TEXT("Curr Frustration Level: %f"), m_currFrustration));
+	//GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Purple, FString::Printf(TEXT("Curr Frustration Level: %f"), m_currFrustration));
 }
 
 void APlanningAgent::CalcShootFrustration()
@@ -150,6 +150,7 @@ void APlanningAgent::Tick(float DeltaTime)
 	if (!m_frustCoolDown)
 	{
 		m_resetTimer -= DeltaTime;
+		GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Blue, FString::Printf(TEXT("Reset Timer: %f"), m_resetTimer));
 
 		if (m_resetTimer <= 0)
 		{
@@ -173,6 +174,9 @@ void APlanningAgent::Tick(float DeltaTime)
 				m_enemyHealth = DEFAULT_ENEMY_HEALTH;
 				m_enemyAggression = DEFAULT_ENEMY_AGGRESSION;
 				m_enemySpeed = DEFAULT_ENEMY_SPEED;
+
+				m_currFrustration = 0;
+				m_prevFrustration = 0;
 			}
 		}
 	}
@@ -184,9 +188,16 @@ void APlanningAgent::Tick(float DeltaTime)
 
 			if (m_coolDownTimer <= 0)
 			{
+				m_shootCount = 0;
+				m_jumpCount = 0;
+				m_moveBackCount = 0;
+				m_zigZagCount = 0;
+
 				m_coolDownTimer = COOL_DOWN_TIMER;
 				m_frustCoolDown = false;
 			}
+
+			GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Green, FString::Printf(TEXT("Cool Down Timer: %f"), m_coolDownTimer));
 		}
 	}
 
