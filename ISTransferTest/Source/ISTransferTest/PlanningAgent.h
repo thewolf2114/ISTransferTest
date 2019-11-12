@@ -25,9 +25,9 @@ protected:
 	const float SHOOT_WEIGHT = 0.25;
 	const float MOVE_BACK_WEIGHT = 0.3;
 	const float ZIG_ZAG_WEIGHT = 0.25;
-	const float MOVE_BACK_TIMER = 0.5;
+	const float MOVE_TIMER = 0.5;
 	const int RESET_TIMER = 5;
-	const int SPAWN_TIMER = 1;
+	const int SPAWN_TIMER = 2;
 	const int COOL_DOWN_TIMER = 10;
 	const int DEFAULT_MAX_ENEMY = 10;
 	const int DEFAULT_ENEMY_HEALTH = 100;
@@ -52,6 +52,10 @@ protected:
 	int m_moveBackCount;
 	int m_zigZagCount;
 	int m_prevZigZagValue;
+	int m_turnCount;
+	int m_prevTurnValue;
+	int m_lookUpCount;
+	int m_prevLookUpValue;
 	int m_maxShoot;
 	int m_maxJump;
 	int m_maxMoveBack;
@@ -91,6 +95,8 @@ public:
 	void DetectJump();
 	void MoveForward(float value);
 	void MoveRight(float value);
+	void Turn(float value);
+	void LookUp(float value);
 
 	void EnemyDied();
 };

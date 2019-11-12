@@ -25,6 +25,10 @@ APlanningAgent::APlanningAgent()
 	m_shootCount = 0;
 	m_moveBackCount = 0;
 	m_zigZagCount = 0;
+	m_turnCount = 0;
+	m_prevTurnValue = 0;
+	m_lookUpCount = 0;
+	m_prevLookUpValue = 0;
 	m_maxShoot = 10;
 	m_maxJump = 10;
 	m_maxMoveBack = 10;
@@ -39,7 +43,7 @@ APlanningAgent::APlanningAgent()
 
 	// Timer
 	m_resetTimer = RESET_TIMER;
-	m_moveBackTimer = MOVE_BACK_TIMER;
+	m_moveBackTimer = MOVE_TIMER;
 	m_spawnTimer = SPAWN_TIMER;
 	m_coolDownTimer = COOL_DOWN_TIMER;
 
@@ -59,6 +63,7 @@ void APlanningAgent::BeginPlay()
 	}
 }
 
+// Calculates the total frustration of the player
 void APlanningAgent::CalcFrustration()
 {
 	m_prevFrustration = m_currFrustration;
@@ -75,6 +80,7 @@ void APlanningAgent::CalcFrustration()
 	//GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Purple, FString::Printf(TEXT("Curr Frustration Level: %f"), m_currFrustration));
 }
 
+// Calculates the shooting portion of the frustration calculation
 void APlanningAgent::CalcShootFrustration()
 {
 	if (m_shootCount > m_maxShoot)
@@ -85,6 +91,7 @@ void APlanningAgent::CalcShootFrustration()
 	m_shootFrustration = (float)m_shootCount / m_maxShoot;
 }
 
+// Calculates the jumping portion of the frustration calculation
 void APlanningAgent::CalcJumpFrustration()
 {
 	if (m_jumpCount > m_maxJump)
@@ -95,11 +102,13 @@ void APlanningAgent::CalcJumpFrustration()
 	m_jumpFrustration = (float)m_jumpCount / m_maxJump;
 }
 
+// Calculates the moving backward portion of the frustration calculation
 void APlanningAgent::CalcMoveBackFrustration()
 {
 	m_moveBackFrustration = (float)m_moveBackCount / m_maxMoveBack;
 }
 
+// Calculates the zig zag movment portion of the frustration calculation
 void APlanningAgent::CalcZigZagFrustration()
 {
 	if (m_zigZagCount > m_maxZigZag)
@@ -110,6 +119,9 @@ void APlanningAgent::CalcZigZagFrustration()
 	m_zigZagFrustration = (float)m_zigZagCount / m_maxZigZag;
 }
 
+// Spawns an enemy into the world.
+// Current finding a random spawn point for the spawning,
+// move development needed.
 void APlanningAgent::SpawnEnemy()
 {
 	UWorld* const World = GetWorld();
@@ -205,16 +217,20 @@ void APlanningAgent::Tick(float DeltaTime)
 	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, FString::Printf(TEXT("Curr Enemies: %d"), m_currEnemies));
 }
 
+// Increases the amount of times the player has shot their gun
 void APlanningAgent::DetectShot()
 {
 	m_shootCount++;
 }
 
+// Increases the amount of times the player has jumped
 void APlanningAgent::DetectJump()
 {
 	m_jumpCount++;
 }
 
+// Increases the amount of times the player moves backward,
+// based on if they have been moving backward for a certain amount of time.
 void APlanningAgent::MoveForward(float value)
 {
 	if (value < 0)
@@ -223,16 +239,17 @@ void APlanningAgent::MoveForward(float value)
 
 		if (m_moveBackTimer <= 0)
 		{
-			m_moveBackTimer = MOVE_BACK_TIMER;
+			m_moveBackTimer = MOVE_TIMER;
 			m_moveBackCount++;
 		}
 	}
 	else
 	{
-		m_moveBackTimer = MOVE_BACK_TIMER;
+		m_moveBackTimer = MOVE_TIMER;
 	}
 }
 
+// Increases the amount of times the player moves in a zig zag pattern
 void APlanningAgent::MoveRight(float value)
 {
 	if (value != 0 && m_prevZigZagValue == 0 && floor(value) == value)
@@ -248,6 +265,15 @@ void APlanningAgent::MoveRight(float value)
 	}
 }
 
+void APlanningAgent::Turn(float value)
+{
+}
+
+void APlanningAgent::LookUp(float value)
+{
+}
+
+// Decreases the current amount of enemies in the level.
 void APlanningAgent::EnemyDied()
 {
 	m_currEnemies--;
