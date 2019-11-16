@@ -21,6 +21,8 @@ APlanningAgent::APlanningAgent()
 	m_jumpFrustration = 0;
 	m_moveBackFrustration = 0;
 	m_zigZagFrustration = 0;
+	m_turnFrustration = 0;
+	m_lookUpFrustration = 0;
 	m_jumpCount = 0;
 	m_shootCount = 0;
 	m_moveBackCount = 0;
@@ -33,6 +35,8 @@ APlanningAgent::APlanningAgent()
 	m_maxJump = 10;
 	m_maxMoveBack = 10;
 	m_maxZigZag = 10;
+	m_maxTurn = 10;
+	m_maxLookUp = 10;
 
 	// Enemy creation variables
 	m_maxEnemies = DEFAULT_MAX_ENEMY;
@@ -75,17 +79,21 @@ void APlanningAgent::BeginPlay()
 void APlanningAgent::CalcFrustration()
 {
 	m_prevFrustration = m_currFrustration;
-	//GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Purple, FString::Printf(TEXT("Prev Frustration Level: %f"), m_prevFrustration));
+	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Purple, FString::Printf(TEXT("Prev Frustration Level: %f"), m_prevFrustration));
 
 	CalcShootFrustration();
 	CalcJumpFrustration();
 	CalcMoveBackFrustration();
 	CalcZigZagFrustration();
+	CalcTurnFrustration();
+	CalcLookUpFrustration();
 
-	m_currFrustration = (m_shootFrustration * m_shootWeight) + (m_jumpFrustration * m_jumpWeight) + (m_moveBackFrustration * m_moveBackWeight) + (m_zigZagFrustration * m_zigZagWeight);
+	m_currFrustration = (m_shootFrustration * m_shootWeight) + (m_jumpFrustration * m_jumpWeight) + 
+		(m_moveBackFrustration * m_moveBackWeight) + (m_zigZagFrustration * m_zigZagWeight) + 
+		(m_turnFrustration * m_turnWeight) + (m_lookUpFrustration * m_lookUpWeight);
 	m_currFrustration *= m_currFrustration;
 
-	//GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Purple, FString::Printf(TEXT("Curr Frustration Level: %f"), m_currFrustration));
+	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Purple, FString::Printf(TEXT("Curr Frustration Level: %f"), m_currFrustration));
 }
 
 // Calculates the shooting portion of the frustration calculation
@@ -125,6 +133,26 @@ void APlanningAgent::CalcZigZagFrustration()
 	}
 
 	m_zigZagFrustration = (float)m_zigZagCount / m_maxZigZag;
+}
+
+void APlanningAgent::CalcTurnFrustration()
+{
+	if (m_turnCount > m_maxTurn)
+	{
+		m_maxTurn = m_turnCount;
+	}
+
+	m_turnFrustration = (float)m_turnCount / m_maxTurn;
+}
+
+void APlanningAgent::CalcLookUpFrustration()
+{
+	if (m_lookUpCount > m_maxLookUp)
+	{
+		m_maxLookUp = m_lookUpCount;
+	}
+
+	m_lookUpFrustration = (float)m_lookUpCount / m_maxLookUp;
 }
 
 // Spawns an enemy into the world.
@@ -269,10 +297,32 @@ void APlanningAgent::MoveRight(float value)
 
 void APlanningAgent::Turn(float value)
 {
+	if (value != 0 && m_prevTurnValue == 0)
+	{
+		m_prevTurnValue = value;
+	}
+
+	if (value != 0 && FMath::Sign<float>(m_prevTurnValue) == -FMath::Sign<float>(value))
+	{
+		m_turnCount++;
+
+		m_prevTurnValue = value;
+	}
 }
 
 void APlanningAgent::LookUp(float value)
 {
+	if (value != 0 && m_prevLookUpValue == 0)
+	{
+		m_prevLookUpValue = value;
+	}
+
+	if (value != 0 && FMath::Sign<float>(m_prevLookUpValue) == -FMath::Sign<float>(value))
+	{
+		m_lookUpCount++;
+
+		m_prevLookUpValue = value;
+	}
 }
 
 // Decreases the current amount of enemies in the level.

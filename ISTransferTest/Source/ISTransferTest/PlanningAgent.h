@@ -38,25 +38,32 @@ protected:
 	float m_coolDownTimer;
 
 	// Frustration variables
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Frustration")
 	float m_currFrustration;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Frustration")
 	float m_prevFrustration;
 	float m_shootFrustration;
 	float m_jumpFrustration;
 	float m_moveBackFrustration;
 	float m_zigZagFrustration;
+	float m_turnFrustration;
+	float m_lookUpFrustration;
 	int m_jumpCount;
 	int m_shootCount;
 	int m_moveBackCount;
 	int m_zigZagCount;
 	int m_prevZigZagValue;
 	int m_turnCount;
-	int m_prevTurnValue;
+	float m_prevTurnValue;
 	int m_lookUpCount;
-	int m_prevLookUpValue;
+	float m_prevLookUpValue;
 	int m_maxShoot;
 	int m_maxJump;
 	int m_maxMoveBack;
 	int m_maxZigZag;
+	int m_maxTurn;
+	int m_maxLookUp;
 
 	// Enemy creation variables
 	int m_maxEnemies;
@@ -99,6 +106,8 @@ protected:
 	void CalcJumpFrustration();
 	void CalcMoveBackFrustration();
 	void CalcZigZagFrustration();
+	void CalcTurnFrustration();
+	void CalcLookUpFrustration();
 
 	// Spawn the enemy
 	void SpawnEnemy();

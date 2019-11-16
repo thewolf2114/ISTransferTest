@@ -21,7 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeISTransferTest_init() {}
 				nullptr,
 				0,
 				PKG_CompiledIn | 0x00000000,
-				0xCBCAF9A0,
+				0xBBD68434,
 				0xFFCCF5D7,
 				METADATA_PARAMS(nullptr, 0)
 			};

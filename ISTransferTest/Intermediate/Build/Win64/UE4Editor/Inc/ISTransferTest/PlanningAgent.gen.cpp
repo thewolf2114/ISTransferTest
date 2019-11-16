@@ -61,6 +61,14 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_jumpWeight_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_m_jumpWeight;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_prevFrustration_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_m_prevFrustration;
+#if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_currFrustration_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_m_currFrustration;
 		static const UE4CodeGen_Private::FPropertyParamsBase* const PropPointers[];
 		static const FCppClassTypeInfoStatic StaticCppClassTypeInfo;
 		static const UE4CodeGen_Private::FClassParams ClassParams;
@@ -126,6 +134,22 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 	};
 #endif
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_jumpWeight = { "m_jumpWeight", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_jumpWeight), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_jumpWeight_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_jumpWeight_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_prevFrustration_MetaData[] = {
+		{ "Category", "Frustration" },
+		{ "ModuleRelativePath", "PlanningAgent.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_prevFrustration = { "m_prevFrustration", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_prevFrustration), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_prevFrustration_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_prevFrustration_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration_MetaData[] = {
+		{ "Category", "Frustration" },
+		{ "Comment", "// Frustration variables\n" },
+		{ "ModuleRelativePath", "PlanningAgent.h" },
+		{ "ToolTip", "Frustration variables" },
+	};
+#endif
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration = { "m_currFrustration", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_currFrustration), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_APlanningAgent_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_lookUpWeight,
@@ -134,6 +158,8 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_moveBackWeight,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_shootWeight,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_jumpWeight,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_prevFrustration,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration,
 	};
 	const FCppClassTypeInfoStatic Z_Construct_UClass_APlanningAgent_Statics::StaticCppClassTypeInfo = {
 		TCppClassTypeTraits<APlanningAgent>::IsAbstract,
@@ -162,7 +188,7 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlanningAgent, 310248361);
+	IMPLEMENT_CLASS(APlanningAgent, 1099841460);
 	template<> ISTRANSFERTEST_API UClass* StaticClass<APlanningAgent>()
 	{
 		return APlanningAgent::StaticClass();

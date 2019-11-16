@@ -58,6 +58,8 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(APlanningAgent); \
 
 
 #define ISTransferTest_Source_ISTransferTest_PlanningAgent_h_13_PRIVATE_PROPERTY_OFFSET \
+	FORCEINLINE static uint32 __PPO__m_currFrustration() { return STRUCT_OFFSET(APlanningAgent, m_currFrustration); } \
+	FORCEINLINE static uint32 __PPO__m_prevFrustration() { return STRUCT_OFFSET(APlanningAgent, m_prevFrustration); } \
 	FORCEINLINE static uint32 __PPO__m_jumpWeight() { return STRUCT_OFFSET(APlanningAgent, m_jumpWeight); } \
 	FORCEINLINE static uint32 __PPO__m_shootWeight() { return STRUCT_OFFSET(APlanningAgent, m_shootWeight); } \
 	FORCEINLINE static uint32 __PPO__m_moveBackWeight() { return STRUCT_OFFSET(APlanningAgent, m_moveBackWeight); } \
