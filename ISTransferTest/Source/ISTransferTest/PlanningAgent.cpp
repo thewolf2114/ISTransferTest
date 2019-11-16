@@ -47,6 +47,14 @@ APlanningAgent::APlanningAgent()
 	m_spawnTimer = SPAWN_TIMER;
 	m_coolDownTimer = COOL_DOWN_TIMER;
 
+	// Weights
+	m_jumpWeight = 0.16;
+	m_shootWeight = 0.16;
+	m_moveBackWeight = 0.16;
+	m_zigZagWeight = 0.16;
+	m_turnWeight = 0.16;
+	m_lookUpWeight = 0.20;
+
 	// Winding Down Frustration
 	m_frustCoolDown = false;
 }
@@ -74,7 +82,7 @@ void APlanningAgent::CalcFrustration()
 	CalcMoveBackFrustration();
 	CalcZigZagFrustration();
 
-	m_currFrustration = (m_shootFrustration * SHOOT_WEIGHT) + (m_jumpFrustration * JUMP_WEIGHT) + (m_moveBackFrustration * MOVE_BACK_WEIGHT) + (m_zigZagFrustration * ZIG_ZAG_WEIGHT);
+	m_currFrustration = (m_shootFrustration * m_shootWeight) + (m_jumpFrustration * m_jumpWeight) + (m_moveBackFrustration * m_moveBackWeight) + (m_zigZagFrustration * m_zigZagWeight);
 	m_currFrustration *= m_currFrustration;
 
 	//GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Purple, FString::Printf(TEXT("Curr Frustration Level: %f"), m_currFrustration));
@@ -156,13 +164,12 @@ void APlanningAgent::Tick(float DeltaTime)
 	{
 		m_spawnTimer = SPAWN_TIMER;
 
-		SpawnEnemy();
+		//SpawnEnemy();
 	}
 
 	if (!m_frustCoolDown)
 	{
 		m_resetTimer -= DeltaTime;
-		GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Blue, FString::Printf(TEXT("Reset Timer: %f"), m_resetTimer));
 
 		if (m_resetTimer <= 0)
 		{
@@ -208,13 +215,8 @@ void APlanningAgent::Tick(float DeltaTime)
 				m_coolDownTimer = COOL_DOWN_TIMER;
 				m_frustCoolDown = false;
 			}
-
-			GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Green, FString::Printf(TEXT("Cool Down Timer: %f"), m_coolDownTimer));
 		}
 	}
-
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("Max Enemies: %d"), m_maxEnemies));
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, FString::Printf(TEXT("Curr Enemies: %d"), m_currEnemies));
 }
 
 // Increases the amount of times the player has shot their gun

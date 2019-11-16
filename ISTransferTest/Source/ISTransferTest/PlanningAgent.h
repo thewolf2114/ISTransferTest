@@ -21,10 +21,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	// Constants
-	const float JUMP_WEIGHT = 0.2;
-	const float SHOOT_WEIGHT = 0.25;
-	const float MOVE_BACK_WEIGHT = 0.3;
-	const float ZIG_ZAG_WEIGHT = 0.25;
+
 	const float MOVE_TIMER = 0.5;
 	const int RESET_TIMER = 5;
 	const int SPAWN_TIMER = 2;
@@ -70,6 +67,25 @@ protected:
 
 	// Winding down frustration
 	bool m_frustCoolDown;
+
+	// Weights
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weights")
+	float m_jumpWeight;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weights")
+	float m_shootWeight;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weights")
+	float m_moveBackWeight;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weights")
+	float m_zigZagWeight;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weights")
+	float m_turnWeight;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weights")
+	float m_lookUpWeight;
 
 	UPROPERTY(EditAnywhere, Category = "Spawn Enemy")
 	TSubclassOf<class AEnemyAgent1> m_enemyClass;
