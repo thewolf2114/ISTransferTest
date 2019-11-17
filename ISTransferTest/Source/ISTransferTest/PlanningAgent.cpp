@@ -155,6 +155,16 @@ void APlanningAgent::CalcLookUpFrustration()
 	m_lookUpFrustration = (float)m_lookUpCount / m_maxLookUp;
 }
 
+void APlanningAgent::ZeroCounts()
+{
+	m_shootCount = 0;
+	m_jumpCount = 0;
+	m_moveBackCount = 0;
+	m_zigZagCount = 0;
+	m_turnCount = 0;
+	m_lookUpCount = 0;
+}
+
 // Spawns an enemy into the world.
 // Current finding a random spawn point for the spawning,
 // move development needed.
@@ -181,6 +191,42 @@ void APlanningAgent::SpawnEnemy()
 	}
 }
 
+void APlanningAgent::IncreaseMaxEnemy()
+{
+}
+
+void APlanningAgent::IncreaseEnemyHealth()
+{
+}
+
+void APlanningAgent::IncreaseEnemyAggression()
+{
+}
+
+void APlanningAgent::IncreaseEnemySpeed()
+{
+}
+
+void APlanningAgent::ChangePlayerOverheat()
+{
+}
+
+void APlanningAgent::FlankingEnemies()
+{
+}
+
+void APlanningAgent::Normalize()
+{
+	m_frustCoolDown = true;
+	m_maxEnemies = DEFAULT_MAX_ENEMY;
+	m_enemyHealth = DEFAULT_ENEMY_HEALTH;
+	m_enemyAggression = DEFAULT_ENEMY_AGGRESSION;
+	m_enemySpeed = DEFAULT_ENEMY_SPEED;
+
+	m_currFrustration = 0;
+	m_prevFrustration = 0;
+}
+
 // Called every frame
 void APlanningAgent::Tick(float DeltaTime)
 {
@@ -205,10 +251,7 @@ void APlanningAgent::Tick(float DeltaTime)
 
 			CalcFrustration();
 
-			m_shootCount = 0;
-			m_jumpCount = 0;
-			m_moveBackCount = 0;
-			m_zigZagCount = 0;
+			ZeroCounts();
 
 			if (m_currFrustration < 0.3)
 			{
@@ -216,14 +259,15 @@ void APlanningAgent::Tick(float DeltaTime)
 			}
 			else
 			{
-				m_frustCoolDown = true;
-				m_maxEnemies = DEFAULT_MAX_ENEMY;
-				m_enemyHealth = DEFAULT_ENEMY_HEALTH;
-				m_enemyAggression = DEFAULT_ENEMY_AGGRESSION;
-				m_enemySpeed = DEFAULT_ENEMY_SPEED;
+				//m_frustCoolDown = true;
+				//m_maxEnemies = DEFAULT_MAX_ENEMY;
+				//m_enemyHealth = DEFAULT_ENEMY_HEALTH;
+				//m_enemyAggression = DEFAULT_ENEMY_AGGRESSION;
+				//m_enemySpeed = DEFAULT_ENEMY_SPEED;
 
-				m_currFrustration = 0;
-				m_prevFrustration = 0;
+				//m_currFrustration = 0;
+				//m_prevFrustration = 0;
+				Normalize();
 			}
 		}
 	}
@@ -235,10 +279,7 @@ void APlanningAgent::Tick(float DeltaTime)
 
 			if (m_coolDownTimer <= 0)
 			{
-				m_shootCount = 0;
-				m_jumpCount = 0;
-				m_moveBackCount = 0;
-				m_zigZagCount = 0;
+				ZeroCounts();
 
 				m_coolDownTimer = COOL_DOWN_TIMER;
 				m_frustCoolDown = false;

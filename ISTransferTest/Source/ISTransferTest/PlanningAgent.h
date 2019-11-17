@@ -66,10 +66,19 @@ protected:
 	int m_maxLookUp;
 
 	// Enemy creation variables
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
 	int m_maxEnemies;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
 	int m_currEnemies;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
 	float m_enemyHealth;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
 	float m_enemyAggression;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
 	float m_enemySpeed;
 
 	// Winding down frustration
@@ -108,9 +117,19 @@ protected:
 	void CalcZigZagFrustration();
 	void CalcTurnFrustration();
 	void CalcLookUpFrustration();
+	void ZeroCounts();
 
 	// Spawn the enemy
 	void SpawnEnemy();
+
+	// Frustration strategies
+	void IncreaseMaxEnemy();
+	void IncreaseEnemyHealth();
+	void IncreaseEnemyAggression();
+	void IncreaseEnemySpeed();
+	void ChangePlayerOverheat();
+	void FlankingEnemies();
+	void Normalize();
 
 public:	
 	// Called every frame
