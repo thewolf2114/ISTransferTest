@@ -37,6 +37,7 @@ APlanningAgent::APlanningAgent()
 	m_maxZigZag = 10;
 	m_maxTurn = 10;
 	m_maxLookUp = 10;
+	m_isFlanking = false;
 
 	// Enemy creation variables
 	m_maxEnemies = DEFAULT_MAX_ENEMY;
@@ -163,6 +164,7 @@ void APlanningAgent::ZeroCounts()
 	m_zigZagCount = 0;
 	m_turnCount = 0;
 	m_lookUpCount = 0;
+	m_isFlanking = false;
 }
 
 // Spawns an enemy into the world.
@@ -178,41 +180,67 @@ void APlanningAgent::SpawnEnemy()
 		FVector location;
 		FActorSpawnParameters spawnParams;
 
-		int32 rand = FMath::RandRange(0, m_spawnPoints.Num() - 1);
+		if (m_isFlanking)
+		{
+			TArray<ASpawnPoint*> flankingPoints = GetFlankingPoints();
 
-		rotation = m_spawnPoints[rand]->GetActorRotation();
-		location = m_spawnPoints[rand]->GetActorLocation();
-		spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+			int32 rand = FMath::RandRange(0, flankingPoints.Num() - 1);
+			ASpawnPoint* randPoint = flankingPoints[rand];
 
-		AEnemyAgent1* enemy = World->SpawnActor<AEnemyAgent1>(m_enemyClass, location, rotation, spawnParams);
-		enemy->SetVariables(m_enemyHealth, m_enemySpeed, m_enemyAggression);
+			rotation = randPoint->GetActorRotation();
+			location = randPoint->GetActorLocation();
+			spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+			AEnemyAgent1* enemy = World->SpawnActor<AEnemyAgent1>(m_enemyClass, location, rotation, spawnParams);
+			enemy->SetVariables(m_enemyHealth, m_enemySpeed, m_enemyAggression);
 
-		m_currEnemies++;
+			m_currEnemies++;
+		}
+		else
+		{
+			TArray<ASpawnPoint*> forwardPoints = GetForwardPoints();
+
+			int32 rand = FMath::RandRange(0, forwardPoints.Num() - 1);
+			ASpawnPoint* randPoint = forwardPoints[rand];
+
+			rotation = randPoint->GetActorRotation();
+			location = randPoint->GetActorLocation();
+			spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+			AEnemyAgent1* enemy = World->SpawnActor<AEnemyAgent1>(m_enemyClass, location, rotation, spawnParams);
+			enemy->SetVariables(m_enemyHealth, m_enemySpeed, m_enemyAggression);
+
+			m_currEnemies++;
+		}
 	}
 }
 
 void APlanningAgent::IncreaseMaxEnemy()
 {
+	m_maxEnemies++;
 }
 
 void APlanningAgent::IncreaseEnemyHealth()
 {
+	m_enemyHealth += 50;
 }
 
 void APlanningAgent::IncreaseEnemyAggression()
 {
+	m_enemyAggression = 1;
 }
 
 void APlanningAgent::IncreaseEnemySpeed()
 {
+	m_enemySpeed += 50;
 }
 
 void APlanningAgent::ChangePlayerOverheat()
 {
+	
 }
 
 void APlanningAgent::FlankingEnemies()
 {
+	m_isFlanking = true;
 }
 
 void APlanningAgent::Normalize()
@@ -227,6 +255,54 @@ void APlanningAgent::Normalize()
 	m_prevFrustration = 0;
 }
 
+TArray<ASpawnPoint*> APlanningAgent::GetFlankingPoints()
+{
+	float dotProduct;
+	FVector direction;
+	TArray<ASpawnPoint*> spawnPoints;
+	AISTransferTestCharacter* player = Cast<AISTransferTestCharacter>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+
+	if (player != nullptr)
+	{
+		for (auto& point : m_spawnPoints)
+		{
+			direction = point->GetActorLocation() - player->GetActorLocation();
+			dotProduct = FVector::DotProduct(direction, player->GetActorForwardVector());
+
+			if (dotProduct < 0)
+			{
+				spawnPoints.Add(point);
+			}
+		}
+	}
+
+	return spawnPoints;
+}
+
+TArray<ASpawnPoint*> APlanningAgent::GetForwardPoints()
+{
+	float dotProduct;
+	FVector direction;
+	TArray<ASpawnPoint*> spawnPoints;
+	AISTransferTestCharacter* player = Cast<AISTransferTestCharacter>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+
+	if (player != nullptr)
+	{
+		for (auto& point : m_spawnPoints)
+		{
+			direction = point->GetActorLocation() - player->GetActorLocation();
+			dotProduct = FVector::DotProduct(direction, player->GetActorForwardVector());
+
+			if (dotProduct > 0)
+			{
+				spawnPoints.Add(point);
+			}
+		}
+	}
+
+	return spawnPoints;
+}
+
 // Called every frame
 void APlanningAgent::Tick(float DeltaTime)
 {
@@ -238,7 +314,7 @@ void APlanningAgent::Tick(float DeltaTime)
 	{
 		m_spawnTimer = SPAWN_TIMER;
 
-		//SpawnEnemy();
+		SpawnEnemy();
 	}
 
 	if (!m_frustCoolDown)
@@ -259,14 +335,6 @@ void APlanningAgent::Tick(float DeltaTime)
 			}
 			else
 			{
-				//m_frustCoolDown = true;
-				//m_maxEnemies = DEFAULT_MAX_ENEMY;
-				//m_enemyHealth = DEFAULT_ENEMY_HEALTH;
-				//m_enemyAggression = DEFAULT_ENEMY_AGGRESSION;
-				//m_enemySpeed = DEFAULT_ENEMY_SPEED;
-
-				//m_currFrustration = 0;
-				//m_prevFrustration = 0;
 				Normalize();
 			}
 		}

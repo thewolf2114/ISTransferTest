@@ -64,6 +64,7 @@ protected:
 	int m_maxZigZag;
 	int m_maxTurn;
 	int m_maxLookUp;
+	bool m_isFlanking;
 
 	// Enemy creation variables
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
@@ -130,6 +131,10 @@ protected:
 	void ChangePlayerOverheat();
 	void FlankingEnemies();
 	void Normalize();
+
+	// Helper functions
+	TArray<ASpawnPoint*> GetFlankingPoints();
+	TArray<ASpawnPoint*> GetForwardPoints();
 
 public:	
 	// Called every frame
