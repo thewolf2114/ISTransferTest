@@ -160,28 +160,28 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 		{ "ModuleRelativePath", "PlanningAgent.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemySpeed = { "m_enemySpeed", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_enemySpeed), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemySpeed_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemySpeed_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemySpeed = { "m_enemySpeed", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_enemySpeed), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemySpeed_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemySpeed_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyAggression_MetaData[] = {
 		{ "Category", "Enemy" },
 		{ "ModuleRelativePath", "PlanningAgent.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyAggression = { "m_enemyAggression", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_enemyAggression), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyAggression_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyAggression_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyAggression = { "m_enemyAggression", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_enemyAggression), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyAggression_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyAggression_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyHealth_MetaData[] = {
 		{ "Category", "Enemy" },
 		{ "ModuleRelativePath", "PlanningAgent.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyHealth = { "m_enemyHealth", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_enemyHealth), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyHealth_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyHealth_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyHealth = { "m_enemyHealth", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_enemyHealth), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyHealth_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyHealth_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currEnemies_MetaData[] = {
 		{ "Category", "Enemy" },
 		{ "ModuleRelativePath", "PlanningAgent.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currEnemies = { "m_currEnemies", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_currEnemies), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currEnemies_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currEnemies_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currEnemies = { "m_currEnemies", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_currEnemies), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currEnemies_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currEnemies_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_maxEnemies_MetaData[] = {
 		{ "Category", "Enemy" },
@@ -190,14 +190,14 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 		{ "ToolTip", "Enemy creation variables" },
 	};
 #endif
-	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_maxEnemies = { "m_maxEnemies", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_maxEnemies), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_maxEnemies_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_maxEnemies_MetaData)) };
+	const UE4CodeGen_Private::FUnsizedIntPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_maxEnemies = { "m_maxEnemies", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_maxEnemies), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_maxEnemies_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_maxEnemies_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_prevFrustration_MetaData[] = {
 		{ "Category", "Frustration" },
 		{ "ModuleRelativePath", "PlanningAgent.h" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_prevFrustration = { "m_prevFrustration", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_prevFrustration), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_prevFrustration_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_prevFrustration_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_prevFrustration = { "m_prevFrustration", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_prevFrustration), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_prevFrustration_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_prevFrustration_MetaData)) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration_MetaData[] = {
 		{ "Category", "Frustration" },
@@ -206,7 +206,7 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 		{ "ToolTip", "Frustration variables" },
 	};
 #endif
-	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration = { "m_currFrustration", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_currFrustration), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration_MetaData)) };
+	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration = { "m_currFrustration", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_currFrustration), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_APlanningAgent_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_lookUpWeight,
@@ -250,7 +250,7 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlanningAgent, 3045542808);
+	IMPLEMENT_CLASS(APlanningAgent, 1428794509);
 	template<> ISTRANSFERTEST_API UClass* StaticClass<APlanningAgent>()
 	{
 		return APlanningAgent::StaticClass();

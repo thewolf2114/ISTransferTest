@@ -63,7 +63,11 @@ APlanningAgent::APlanningAgent()
 	// Winding Down Frustration
 	m_frustCoolDown = false;
 
+	m_enemiesIncreasedBy = 0;
+	m_enemyHealthIncreasedBy = 0;
+	m_enemySpeedIncreasedBy = 0;
 	m_strategyIndex = 0;
+	m_changedOverheat = false;
 	InitStrategies();
 }
 
@@ -229,11 +233,13 @@ void APlanningAgent::SpawnEnemy()
 void APlanningAgent::IncreaseMaxEnemy()
 {
 	m_maxEnemies++;
+	m_enemiesIncreasedBy++;
 }
 
 void APlanningAgent::IncreaseEnemyHealth()
 {
-	m_enemyHealth += 20;
+	m_enemyHealth += INCREASE_ENEMY_HEALTH;
+	m_enemyHealthIncreasedBy += INCREASE_ENEMY_HEALTH;
 }
 
 void APlanningAgent::IncreaseEnemyAggression()
@@ -243,7 +249,8 @@ void APlanningAgent::IncreaseEnemyAggression()
 
 void APlanningAgent::IncreaseEnemySpeed()
 {
-	m_enemySpeed += 50;
+	m_enemySpeed += INCREASE_ENEMY_SPEED;
+	m_enemySpeedIncreasedBy += INCREASE_ENEMY_SPEED;
 }
 
 void APlanningAgent::ChangePlayerOverheat()
@@ -254,6 +261,8 @@ void APlanningAgent::ChangePlayerOverheat()
 	{
 		int rand = FMath::RandRange(-20, 20);
 		player->SetHeat(player->GetHeat() + rand);
+
+		m_changedOverheat = true;
 	}
 }
 
@@ -279,10 +288,65 @@ void APlanningAgent::Normalize()
 
 	m_currFrustration = 0;
 	m_prevFrustration = 0;
+
+	m_enemiesIncreasedBy = 0;
+	m_enemyHealthIncreasedBy = 0;
+	m_enemySpeedIncreasedBy = 0;
+	m_strategyIndex = 0;
+	m_changedOverheat = false;
+
+	m_strategyIndex++;
 }
 
-void APlanningAgent::NextStrategy()
+bool APlanningAgent::NeedNewStrategy()
 {
+	bool needStrategy = false;
+
+	switch (m_strategyIndex)
+	{
+	case 0:
+		if (m_enemiesIncreasedBy > 5)
+		{
+			m_enemiesIncreasedBy = 0;
+			needStrategy = true;
+		}
+		break;
+	case 1:
+		if (m_enemyHealthIncreasedBy == 2 * INCREASE_ENEMY_HEALTH)
+		{
+			m_enemyHealthIncreasedBy = 0;
+			needStrategy = true;
+		}
+		break;
+	case 2:
+		if (m_enemyAggression == 1)
+		{
+			needStrategy = true;
+		}
+		break;
+	case 3:
+		if (m_enemySpeedIncreasedBy == 2 * INCREASE_ENEMY_SPEED)
+		{
+			m_enemySpeedIncreasedBy = 0;
+			needStrategy = true;
+		}
+		break;
+	case 4:
+		if (m_changedOverheat)
+		{
+			m_changedOverheat = false;
+			needStrategy = true;
+		}
+		break;
+	case 5:
+		if (m_isFlanking)
+		{
+			needStrategy = true;
+		}
+		break;
+	}
+
+	return needStrategy;
 }
 
 TArray<ASpawnPoint*> APlanningAgent::GetFlankingPoints()
@@ -361,7 +425,12 @@ void APlanningAgent::Tick(float DeltaTime)
 
 			if (m_currFrustration < 0.3)
 			{
-				m_maxEnemies++;
+				(this->* (m_strategies[m_strategyIndex]))();
+
+				if (NeedNewStrategy())
+				{
+					m_strategyIndex++;
+				}
 			}
 			else
 			{

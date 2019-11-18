@@ -34,6 +34,8 @@ protected:
 	const int DEFAULT_ENEMY_AGGRESSION = 0;
 	const int DEFAULT_ENEMY_SPEED = 500;
 	const int DEFAULT_PLAYER_HEAT = 100;
+	const int INCREASE_ENEMY_HEALTH = 20;
+	const int INCREASE_ENEMY_SPEED = 50;
 
 	// Timer
 	float m_resetTimer;
@@ -42,10 +44,10 @@ protected:
 	float m_coolDownTimer;
 
 	// Frustration variables
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Frustration")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Frustration")
 	float m_currFrustration;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Frustration")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Frustration")
 	float m_prevFrustration;
 	float m_shootFrustration;
 	float m_jumpFrustration;
@@ -71,19 +73,19 @@ protected:
 	bool m_isFlanking;
 
 	// Enemy creation variables
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
 	int m_maxEnemies;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
 	int m_currEnemies;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
 	float m_enemyHealth;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
 	float m_enemyAggression;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Enemy")
 	float m_enemySpeed;
 
 	// Winding down frustration
@@ -118,6 +120,10 @@ protected:
 	// Variables for function pointers
 	FunctionPtrType m_strategies[MAX_STRATEGY];
 	int m_strategyIndex;
+	int m_enemiesIncreasedBy;
+	int m_enemyHealthIncreasedBy;
+	int m_enemySpeedIncreasedBy;
+	bool m_changedOverheat;
 
 	// Calculates the players frustration level
 	void CalcFrustration();
@@ -142,7 +148,7 @@ protected:
 	virtual void ChangePlayerOverheat();
 	virtual void FlankingEnemies();
 	void Normalize();
-	void NextStrategy();
+	bool NeedNewStrategy();
 
 	// Helper functions
 	TArray<ASpawnPoint*> GetFlankingPoints();
