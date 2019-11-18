@@ -50,6 +50,10 @@ public:
 
 	void TakeDamage(float damage);
 
+	void SetHeat(int heat);
+
+	int GetHeat();
+
 	virtual void Tick(float DeltaTime);
 
 protected:

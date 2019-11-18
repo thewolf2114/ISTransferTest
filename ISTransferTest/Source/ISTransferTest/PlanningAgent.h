@@ -7,6 +7,8 @@
 #include "GameFramework/Actor.h"
 #include "PlanningAgent.generated.h"
 
+#define MAX_STRATEGY 6
+
 UCLASS()
 class ISTRANSFERTEST_API APlanningAgent : public AActor
 {
@@ -20,8 +22,9 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	// Constants
+	void InitStrategies();
 
+	// Constants
 	const float MOVE_TIMER = 0.5;
 	const int RESET_TIMER = 5;
 	const int SPAWN_TIMER = 2;
@@ -30,6 +33,7 @@ protected:
 	const int DEFAULT_ENEMY_HEALTH = 100;
 	const int DEFAULT_ENEMY_AGGRESSION = 0;
 	const int DEFAULT_ENEMY_SPEED = 500;
+	const int DEFAULT_PLAYER_HEAT = 100;
 
 	// Timer
 	float m_resetTimer;
@@ -108,6 +112,13 @@ protected:
 	TSubclassOf<class AEnemyAgent1> m_enemyClass;
 	TArray<ASpawnPoint*> m_spawnPoints;
 
+	// The Function Pointer Variable type
+	typedef void (APlanningAgent::* FunctionPtrType)(void);
+
+	// Variables for function pointers
+	FunctionPtrType m_strategies[MAX_STRATEGY];
+	int m_strategyIndex;
+
 	// Calculates the players frustration level
 	void CalcFrustration();
 
@@ -124,13 +135,14 @@ protected:
 	void SpawnEnemy();
 
 	// Frustration strategies
-	void IncreaseMaxEnemy();
-	void IncreaseEnemyHealth();
-	void IncreaseEnemyAggression();
-	void IncreaseEnemySpeed();
-	void ChangePlayerOverheat();
-	void FlankingEnemies();
+	virtual void IncreaseMaxEnemy();
+	virtual void IncreaseEnemyHealth();
+	virtual void IncreaseEnemyAggression();
+	virtual void IncreaseEnemySpeed();
+	virtual void ChangePlayerOverheat();
+	virtual void FlankingEnemies();
 	void Normalize();
+	void NextStrategy();
 
 	// Helper functions
 	TArray<ASpawnPoint*> GetFlankingPoints();

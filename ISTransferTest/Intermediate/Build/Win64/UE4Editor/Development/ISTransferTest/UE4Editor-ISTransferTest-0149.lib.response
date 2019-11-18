@@ -1,0 +1,28 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-ISTransferTest-0149.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\ISTransferTestEditor\Development\Engine\SharedPCH.Engine.h.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\EnemyAgent1.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\ISTransferTest.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\ISTransferTestCharacter.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\ISTransferTestGameMode.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\ISTransferTestHUD.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\ISTransferTestProjectile.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\PlanningAgent.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\SpawnPoint.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\EnemyAgent1.gen.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\ISTransferTest.init.gen.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\ISTransferTestCharacter.gen.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\ISTransferTestGameMode.gen.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\ISTransferTestHUD.gen.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\ISTransferTestProjectile.gen.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\PlanningAgent.gen.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\SpawnPoint.gen.cpp.obj"
+"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\Default.rc2.res"
+/OUT:"C:\Users\Rion Cole\Desktop\ISTest\ISTransferTest\Intermediate\Build\Win64\UE4Editor\Development\ISTransferTest\UE4Editor-ISTransferTest-0149.lib"
+/INCLUDE:IMPLEMENT_MODULE_ISTransferTest

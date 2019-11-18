@@ -62,6 +62,20 @@ APlanningAgent::APlanningAgent()
 
 	// Winding Down Frustration
 	m_frustCoolDown = false;
+
+	m_strategyIndex = 0;
+	InitStrategies();
+}
+
+// Initialize function pointer array with strategies
+void APlanningAgent::InitStrategies()
+{
+	m_strategies[0] = &APlanningAgent::IncreaseMaxEnemy;
+	m_strategies[1] = &APlanningAgent::IncreaseEnemyHealth;
+	m_strategies[2] = &APlanningAgent::IncreaseEnemyAggression;
+	m_strategies[3] = &APlanningAgent::IncreaseEnemySpeed;
+	m_strategies[4] = &APlanningAgent::ChangePlayerOverheat;
+	m_strategies[5] = &APlanningAgent::FlankingEnemies;
 }
 
 // Called when the game starts or when spawned
@@ -164,7 +178,6 @@ void APlanningAgent::ZeroCounts()
 	m_zigZagCount = 0;
 	m_turnCount = 0;
 	m_lookUpCount = 0;
-	m_isFlanking = false;
 }
 
 // Spawns an enemy into the world.
@@ -220,7 +233,7 @@ void APlanningAgent::IncreaseMaxEnemy()
 
 void APlanningAgent::IncreaseEnemyHealth()
 {
-	m_enemyHealth += 50;
+	m_enemyHealth += 20;
 }
 
 void APlanningAgent::IncreaseEnemyAggression()
@@ -235,7 +248,13 @@ void APlanningAgent::IncreaseEnemySpeed()
 
 void APlanningAgent::ChangePlayerOverheat()
 {
-	
+	AISTransferTestCharacter* player = Cast<AISTransferTestCharacter>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+
+	if (player != nullptr)
+	{
+		int rand = FMath::RandRange(-20, 20);
+		player->SetHeat(player->GetHeat() + rand);
+	}
 }
 
 void APlanningAgent::FlankingEnemies()
@@ -250,9 +269,20 @@ void APlanningAgent::Normalize()
 	m_enemyHealth = DEFAULT_ENEMY_HEALTH;
 	m_enemyAggression = DEFAULT_ENEMY_AGGRESSION;
 	m_enemySpeed = DEFAULT_ENEMY_SPEED;
+	m_isFlanking = false;
+
+	AISTransferTestCharacter* player = Cast<AISTransferTestCharacter>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+	if (player != nullptr)
+	{
+		player->SetHeat(DEFAULT_PLAYER_HEAT);
+	}
 
 	m_currFrustration = 0;
 	m_prevFrustration = 0;
+}
+
+void APlanningAgent::NextStrategy()
+{
 }
 
 TArray<ASpawnPoint*> APlanningAgent::GetFlankingPoints()

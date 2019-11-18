@@ -100,6 +100,16 @@ void AISTransferTestCharacter::TakeDamage(float damage)
 	m_currHealth -= damage;
 }
 
+void AISTransferTestCharacter::SetHeat(int heat)
+{
+	m_maxHeat = heat;
+}
+
+int AISTransferTestCharacter::GetHeat()
+{
+	return m_maxHeat;
+}
+
 void AISTransferTestCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
