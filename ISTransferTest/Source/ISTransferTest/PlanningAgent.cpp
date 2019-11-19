@@ -98,7 +98,6 @@ void APlanningAgent::BeginPlay()
 void APlanningAgent::CalcFrustration()
 {
 	m_prevFrustration = m_currFrustration;
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Purple, FString::Printf(TEXT("Prev Frustration Level: %f"), m_prevFrustration));
 
 	CalcShootFrustration();
 	CalcJumpFrustration();
@@ -111,8 +110,6 @@ void APlanningAgent::CalcFrustration()
 		(m_moveBackFrustration * m_moveBackWeight) + (m_zigZagFrustration * m_zigZagWeight) + 
 		(m_turnFrustration * m_turnWeight) + (m_lookUpFrustration * m_lookUpWeight);
 	m_currFrustration *= m_currFrustration;
-
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Purple, FString::Printf(TEXT("Curr Frustration Level: %f"), m_currFrustration));
 }
 
 // Calculates the shooting portion of the frustration calculation
@@ -305,14 +302,14 @@ bool APlanningAgent::NeedNewStrategy()
 	switch (m_strategyIndex)
 	{
 	case 0:
-		if (m_enemiesIncreasedBy > 5)
+		if (m_enemiesIncreasedBy >= 5)
 		{
 			m_enemiesIncreasedBy = 0;
 			needStrategy = true;
 		}
 		break;
 	case 1:
-		if (m_enemyHealthIncreasedBy == 2 * INCREASE_ENEMY_HEALTH)
+		if (m_enemyHealthIncreasedBy >= 2 * INCREASE_ENEMY_HEALTH)
 		{
 			m_enemyHealthIncreasedBy = 0;
 			needStrategy = true;
@@ -325,7 +322,7 @@ bool APlanningAgent::NeedNewStrategy()
 		}
 		break;
 	case 3:
-		if (m_enemySpeedIncreasedBy == 2 * INCREASE_ENEMY_SPEED)
+		if (m_enemySpeedIncreasedBy >= 2 * INCREASE_ENEMY_SPEED)
 		{
 			m_enemySpeedIncreasedBy = 0;
 			needStrategy = true;
@@ -503,6 +500,7 @@ void APlanningAgent::MoveRight(float value)
 	}
 }
 
+// Detect the left and right movement of the mouse
 void APlanningAgent::Turn(float value)
 {
 	if (value != 0 && m_prevTurnValue == 0)
@@ -518,6 +516,7 @@ void APlanningAgent::Turn(float value)
 	}
 }
 
+// Detect the Up and Down movement of the mouse
 void APlanningAgent::LookUp(float value)
 {
 	if (value != 0 && m_prevLookUpValue == 0)
