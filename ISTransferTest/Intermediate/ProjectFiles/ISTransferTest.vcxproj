@@ -603,7 +603,6 @@
     <None Include="..\..\ISTransferTest.uproject"/>
     <None Include="..\..\Source\ISTransferTest.Target.cs"/>
     <None Include="..\..\Source\ISTransferTestEditor.Target.cs"/>
-    <None Include="..\..\ISTransferTest.VC.db"/>
     <None Include="..\..\Config\DefaultEditor.ini"/>
     <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini"/>
     <None Include="..\..\Config\DefaultEngine.ini"/>
