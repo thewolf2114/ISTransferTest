@@ -90,7 +90,10 @@ void APlanningAgent::BeginPlay()
 	for (TActorIterator<ASpawnPoint> ActorITR(GetWorld()); ActorITR; ++ActorITR)
 	{
 		ASpawnPoint* spawnPoint = *ActorITR;
-		m_spawnPoints.Add(spawnPoint);
+		if (spawnPoint)
+		{
+			m_spawnPoints.Add(spawnPoint);
+		}
 	}
 }
 
