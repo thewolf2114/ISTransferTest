@@ -21,7 +21,7 @@ AEnemyAgent1::AEnemyAgent1()
 	OnActorHit.AddDynamic(this, &AEnemyAgent1::OnAttackingPlayer);
 
 	m_health = 100;
-	m_speed = 500;
+	m_speed = 200;
 	m_aggression = 0;
 	m_isAttacking = false;
 	m_playerReached = false;
@@ -58,7 +58,9 @@ void AEnemyAgent1::OnAttackStateEnter()
 
 void AEnemyAgent1::OnAttackStateUpdate()
 {
-	if (m_aggression < 0.5f)
+	float willAttack = FMath::FRandRange(m_aggression, 1);
+
+	if (willAttack < WILL_ATTACK)
 	{
 		// attack passively
 		bool anotherAttacker = false;

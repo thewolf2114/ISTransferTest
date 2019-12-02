@@ -244,7 +244,7 @@ void APlanningAgent::IncreaseEnemyHealth()
 
 void APlanningAgent::IncreaseEnemyAggression()
 {
-	m_enemyAggression = 1;
+	m_enemyAggression += 0.2;
 }
 
 void APlanningAgent::IncreaseEnemySpeed()

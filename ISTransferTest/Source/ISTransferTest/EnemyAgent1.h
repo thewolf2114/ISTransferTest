@@ -36,6 +36,8 @@ protected:
 	UFUNCTION()
 	void OnAttackingPlayer(AActor * SelfActor, AActor * OtherActor, FVector NormalImpulse, const FHitResult & Hit);
 
+	const float WILL_ATTACK = 0.7;
+
 	float m_health;
 	float m_speed;
 	float m_aggression;

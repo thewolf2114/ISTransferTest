@@ -32,7 +32,7 @@ protected:
 	const int DEFAULT_MAX_ENEMY = 10;
 	const int DEFAULT_ENEMY_HEALTH = 100;
 	const int DEFAULT_ENEMY_AGGRESSION = 0;
-	const int DEFAULT_ENEMY_SPEED = 500;
+	const int DEFAULT_ENEMY_SPEED = 250;
 	const int DEFAULT_PLAYER_HEAT = 100;
 	const int INCREASE_ENEMY_HEALTH = 20;
 	const int INCREASE_ENEMY_SPEED = 50;
