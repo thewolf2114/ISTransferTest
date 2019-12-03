@@ -351,6 +351,7 @@ bool APlanningAgent::NeedNewStrategy()
 
 void APlanningAgent::AdjustWeights()
 {
+
 }
 
 TArray<ASpawnPoint*> APlanningAgent::GetFlankingPoints()
