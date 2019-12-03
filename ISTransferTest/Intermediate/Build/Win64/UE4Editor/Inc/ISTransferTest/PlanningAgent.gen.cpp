@@ -38,6 +38,11 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 #endif
 		static const UE4CodeGen_Private::FClassPropertyParams NewProp_m_enemyClass;
 #if WITH_METADATA
+		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_weights_MetaData[];
+#endif
+		static const UE4CodeGen_Private::FArrayPropertyParams NewProp_weights;
+		static const UE4CodeGen_Private::FDoublePropertyParams NewProp_weights_Inner;
+#if WITH_METADATA
 		static const UE4CodeGen_Private::FMetaDataPairParam NewProp_m_lookUpWeight_MetaData[];
 #endif
 		static const UE4CodeGen_Private::FFloatPropertyParams NewProp_m_lookUpWeight;
@@ -110,6 +115,14 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 	};
 #endif
 	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass = { "m_enemyClass", nullptr, (EPropertyFlags)0x0024080000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_enemyClass), Z_Construct_UClass_AEnemyAgent1_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass_MetaData)) };
+#if WITH_METADATA
+	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanningAgent_Statics::NewProp_weights_MetaData[] = {
+		{ "Category", "Weights" },
+		{ "ModuleRelativePath", "PlanningAgent.h" },
+	};
+#endif
+	const UE4CodeGen_Private::FArrayPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_weights = { "weights", nullptr, (EPropertyFlags)0x0020080000000015, UE4CodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, weights), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_weights_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_weights_MetaData)) };
+	const UE4CodeGen_Private::FDoublePropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_weights_Inner = { "weights", nullptr, (EPropertyFlags)0x0000000000000000, UE4CodeGen_Private::EPropertyGenFlags::Double, RF_Public|RF_Transient|RF_MarkAsNative, 1, 0, METADATA_PARAMS(nullptr, 0) };
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_lookUpWeight_MetaData[] = {
 		{ "Category", "Weights" },
@@ -209,6 +222,8 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 	const UE4CodeGen_Private::FFloatPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration = { "m_currFrustration", nullptr, (EPropertyFlags)0x0020080000000005, UE4CodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_currFrustration), METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_currFrustration_MetaData)) };
 	const UE4CodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_APlanningAgent_Statics::PropPointers[] = {
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_weights,
+		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_weights_Inner,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_lookUpWeight,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_turnWeight,
 		(const UE4CodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_zigZagWeight,
@@ -250,7 +265,7 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlanningAgent, 1428794509);
+	IMPLEMENT_CLASS(APlanningAgent, 1097171899);
 	template<> ISTRANSFERTEST_API UClass* StaticClass<APlanningAgent>()
 	{
 		return APlanningAgent::StaticClass();
