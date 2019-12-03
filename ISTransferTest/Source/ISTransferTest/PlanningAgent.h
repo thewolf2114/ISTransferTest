@@ -141,14 +141,15 @@ protected:
 	void SpawnEnemy();
 
 	// Frustration strategies
-	virtual void IncreaseMaxEnemy();
-	virtual void IncreaseEnemyHealth();
-	virtual void IncreaseEnemyAggression();
-	virtual void IncreaseEnemySpeed();
-	virtual void ChangePlayerOverheat();
-	virtual void FlankingEnemies();
+	void IncreaseMaxEnemy();
+	void IncreaseEnemyHealth();
+	void IncreaseEnemyAggression();
+	void IncreaseEnemySpeed();
+	void ChangePlayerOverheat();
+	void FlankingEnemies();
 	void Normalize();
 	bool NeedNewStrategy();
+	void AdjustWeights();
 
 	// Helper functions
 	TArray<ASpawnPoint*> GetFlankingPoints();

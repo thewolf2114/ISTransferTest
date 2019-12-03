@@ -349,6 +349,10 @@ bool APlanningAgent::NeedNewStrategy()
 	return needStrategy;
 }
 
+void APlanningAgent::AdjustWeights()
+{
+}
+
 TArray<ASpawnPoint*> APlanningAgent::GetFlankingPoints()
 {
 	float dotProduct;
