@@ -110,9 +110,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weights")
 	float m_lookUpWeight;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Weights")
-	TArray<double> weights;
-
 	UPROPERTY(EditAnywhere, Category = "Spawn Enemy")
 	TSubclassOf<class AEnemyAgent1> m_enemyClass;
 	TArray<ASpawnPoint*> m_spawnPoints;
@@ -153,7 +150,6 @@ protected:
 	void Default();
 	bool NeedNewStrategy();
 	void AdjustWeights();
-	void Normalize();
 
 	// Helper functions
 	TArray<ASpawnPoint*> GetFlankingPoints();

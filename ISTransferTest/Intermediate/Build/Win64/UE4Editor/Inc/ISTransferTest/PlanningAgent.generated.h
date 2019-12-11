@@ -71,7 +71,6 @@ DEFINE_VTABLE_PTR_HELPER_CTOR_CALLER(APlanningAgent); \
 	FORCEINLINE static uint32 __PPO__m_zigZagWeight() { return STRUCT_OFFSET(APlanningAgent, m_zigZagWeight); } \
 	FORCEINLINE static uint32 __PPO__m_turnWeight() { return STRUCT_OFFSET(APlanningAgent, m_turnWeight); } \
 	FORCEINLINE static uint32 __PPO__m_lookUpWeight() { return STRUCT_OFFSET(APlanningAgent, m_lookUpWeight); } \
-	FORCEINLINE static uint32 __PPO__weights() { return STRUCT_OFFSET(APlanningAgent, weights); } \
 	FORCEINLINE static uint32 __PPO__m_enemyClass() { return STRUCT_OFFSET(APlanningAgent, m_enemyClass); }
 
 

@@ -60,13 +60,6 @@ APlanningAgent::APlanningAgent()
 	m_turnWeight = 0.16;
 	m_lookUpWeight = 0.20;
 
-	weights.Add(m_jumpWeight);
-	weights.Add(m_shootWeight);
-	weights.Add(m_moveBackWeight);
-	weights.Add(m_zigZagWeight);
-	weights.Add(m_turnWeight);
-	weights.Add(m_lookUpWeight);
-
 	// Winding Down Frustration
 	m_frustCoolDown = false;
 
@@ -359,24 +352,6 @@ bool APlanningAgent::NeedNewStrategy()
 void APlanningAgent::AdjustWeights()
 {
 
-}
-
-void APlanningAgent::Normalize()
-{
-	double norm = 0;
-
-	for (auto& weight : weights)
-	{
-		norm += FMath::Pow(weight, 2);
-	}
-
-	norm = FMath::Sqrt(norm);
-
-	for (auto& weight : weights)
-	{
-		weight /= norm;
-		weight /= 2;
-	}
 }
 
 TArray<ASpawnPoint*> APlanningAgent::GetFlankingPoints()
