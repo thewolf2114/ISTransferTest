@@ -95,6 +95,12 @@ void APlanningAgent::BeginPlay()
 			m_spawnPoints.Add(spawnPoint);
 		}
 	}
+
+	for (int i = 0; i < 6; i++)
+	{
+		weightChange.Add(0);
+		prevFrust.Add(0);
+	}
 }
 
 // Calculates the total frustration of the player
@@ -109,9 +115,12 @@ void APlanningAgent::CalcFrustration()
 	CalcTurnFrustration();
 	CalcLookUpFrustration();
 
+	AdjustWeights();
+
 	m_currFrustration = (m_shootFrustration * m_shootWeight) + (m_jumpFrustration * m_jumpWeight) + 
 		(m_moveBackFrustration * m_moveBackWeight) + (m_zigZagFrustration * m_zigZagWeight) + 
 		(m_turnFrustration * m_turnWeight) + (m_lookUpFrustration * m_lookUpWeight);
+	m_currFrustration /= 6;
 	m_currFrustration *= m_currFrustration;
 }
 
@@ -346,12 +355,31 @@ bool APlanningAgent::NeedNewStrategy()
 		break;
 	}
 
-	return needStrategy;
+	return needStrategy; 
 }
 
 void APlanningAgent::AdjustWeights()
 {
+ 	weightChange[0] = m_shootFrustration - prevFrust[0];
+	weightChange[1] = m_jumpFrustration - prevFrust[1];
+	weightChange[2] = m_moveBackFrustration - prevFrust[2];
+	weightChange[3] = m_zigZagFrustration - prevFrust[3];
+	weightChange[4] = m_turnFrustration - prevFrust[4];
+	weightChange[5] = m_lookUpFrustration - prevFrust[5];
 
+	m_shootWeight += weightChange[0];
+	m_jumpWeight += weightChange[1];
+	m_moveBackWeight += weightChange[2];
+	m_zigZagWeight += weightChange[3];
+	m_turnWeight += weightChange[4];
+	m_lookUpWeight += weightChange[5];
+
+	prevFrust[0] = m_shootFrustration;
+	prevFrust[1] = m_jumpFrustration;
+	prevFrust[2] = m_moveBackFrustration;
+	prevFrust[3] = m_zigZagFrustration;
+	prevFrust[4] = m_turnFrustration;
+	prevFrust[5] = m_lookUpFrustration;
 }
 
 TArray<ASpawnPoint*> APlanningAgent::GetFlankingPoints()

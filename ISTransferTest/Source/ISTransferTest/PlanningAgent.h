@@ -110,6 +110,10 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weights")
 	float m_lookUpWeight;
 
+	TArray<float> prevFrust;
+
+	TArray<float> weightChange;
+
 	UPROPERTY(EditAnywhere, Category = "Spawn Enemy")
 	TSubclassOf<class AEnemyAgent1> m_enemyClass;
 	TArray<ASpawnPoint*> m_spawnPoints;
