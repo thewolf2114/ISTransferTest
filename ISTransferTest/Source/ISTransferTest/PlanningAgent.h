@@ -110,9 +110,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weights")
 	float m_lookUpWeight;
 
-	TArray<float> prevFrust;
+	float prevFrust[6];
 
-	TArray<float> weightChange;
+	float weightChange[6];
 
 	UPROPERTY(EditAnywhere, Category = "Spawn Enemy")
 	TSubclassOf<class AEnemyAgent1> m_enemyClass;
@@ -158,6 +158,7 @@ protected:
 	// Helper functions
 	TArray<ASpawnPoint*> GetFlankingPoints();
 	TArray<ASpawnPoint*> GetForwardPoints();
+	TArray<ASpawnPoint*> PointsNearPlayer();
 
 public:	
 	// Called every frame

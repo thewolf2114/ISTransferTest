@@ -53,12 +53,12 @@ APlanningAgent::APlanningAgent()
 	m_coolDownTimer = COOL_DOWN_TIMER;
 
 	// Weights
-	m_jumpWeight = 0.16;
-	m_shootWeight = 0.16;
-	m_moveBackWeight = 0.16;
-	m_zigZagWeight = 0.16;
-	m_turnWeight = 0.16;
-	m_lookUpWeight = 0.20;
+	m_jumpWeight = 0;
+	m_shootWeight = 0;
+	m_moveBackWeight = 0;
+	m_zigZagWeight = 0;
+	m_turnWeight = 0;
+	m_lookUpWeight = 0;
 
 	// Winding Down Frustration
 	m_frustCoolDown = false;
@@ -98,8 +98,8 @@ void APlanningAgent::BeginPlay()
 
 	for (int i = 0; i < 6; i++)
 	{
-		weightChange.Add(0);
-		prevFrust.Add(0);
+		prevFrust[i] = 0;
+		weightChange[i] = 0;
 	}
 }
 
@@ -200,7 +200,7 @@ void APlanningAgent::SpawnEnemy()
 {
 	UWorld* const World = GetWorld();
 
-	if (World != NULL)
+	if (World != NULL && m_spawnPoints.Num() > 0)
 	{
 		FRotator rotation;
 		FVector location;
@@ -210,31 +210,37 @@ void APlanningAgent::SpawnEnemy()
 		{
 			TArray<ASpawnPoint*> flankingPoints = GetFlankingPoints();
 
-			int32 rand = FMath::RandRange(0, flankingPoints.Num() - 1);
-			ASpawnPoint* randPoint = flankingPoints[rand];
+			if (flankingPoints.Num() > 0)
+			{
+				int32 rand = FMath::RandRange(0, flankingPoints.Num() - 1);
+				ASpawnPoint* randPoint = flankingPoints[rand];
 
-			rotation = randPoint->GetActorRotation();
-			location = randPoint->GetActorLocation();
-			spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-			AEnemyAgent1* enemy = World->SpawnActor<AEnemyAgent1>(m_enemyClass, location, rotation, spawnParams);
-			enemy->SetVariables(m_enemyHealth, m_enemySpeed, m_enemyAggression);
+				rotation = randPoint->GetActorRotation();
+				location = randPoint->GetActorLocation();
+				spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+				AEnemyAgent1* enemy = World->SpawnActor<AEnemyAgent1>(m_enemyClass, location, rotation, spawnParams);
+				enemy->SetVariables(m_enemyHealth, m_enemySpeed, m_enemyAggression);
 
-			m_currEnemies++;
+				m_currEnemies++;
+			}
 		}
 		else
 		{
 			TArray<ASpawnPoint*> forwardPoints = GetForwardPoints();
 
-			int32 rand = FMath::RandRange(0, forwardPoints.Num() - 1);
-			ASpawnPoint* randPoint = forwardPoints[rand];
+			if (forwardPoints.Num() > 0)
+			{
+				int32 rand = FMath::RandRange(0, forwardPoints.Num() - 1);
+				ASpawnPoint* randPoint = forwardPoints[rand];
 
-			rotation = randPoint->GetActorRotation();
-			location = randPoint->GetActorLocation();
-			spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-			AEnemyAgent1* enemy = World->SpawnActor<AEnemyAgent1>(m_enemyClass, location, rotation, spawnParams);
-			enemy->SetVariables(m_enemyHealth, m_enemySpeed, m_enemyAggression);
+				rotation = randPoint->GetActorRotation();
+				location = randPoint->GetActorLocation();
+				spawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+				AEnemyAgent1* enemy = World->SpawnActor<AEnemyAgent1>(m_enemyClass, location, rotation, spawnParams);
+				enemy->SetVariables(m_enemyHealth, m_enemySpeed, m_enemyAggression);
 
-			m_currEnemies++;
+				m_currEnemies++;
+			}
 		}
 	}
 }
@@ -374,6 +380,13 @@ void APlanningAgent::AdjustWeights()
 	m_turnWeight += weightChange[4];
 	m_lookUpWeight += weightChange[5];
 
+	m_shootWeight = FMath::Clamp<float>(m_shootWeight, 0, 1);
+	m_jumpWeight = FMath::Clamp<float>(m_jumpWeight, 0, 1);
+	m_moveBackWeight = FMath::Clamp<float>(m_moveBackWeight, 0, 1);
+	m_zigZagWeight = FMath::Clamp<float>(m_zigZagWeight, 0, 1);
+	m_turnWeight = FMath::Clamp<float>(m_turnWeight, 0, 1);
+	m_lookUpWeight = FMath::Clamp<float>(m_lookUpWeight, 0, 1);
+
 	prevFrust[0] = m_shootFrustration;
 	prevFrust[1] = m_jumpFrustration;
 	prevFrust[2] = m_moveBackFrustration;
@@ -428,6 +441,22 @@ TArray<ASpawnPoint*> APlanningAgent::GetForwardPoints()
 	}
 
 	return spawnPoints;
+}
+
+TArray<ASpawnPoint*> APlanningAgent::PointsNearPlayer()
+{
+	TArray<ASpawnPoint*> nearPoints;
+	AISTransferTestCharacter* player = Cast<AISTransferTestCharacter>(GetWorld()->GetFirstPlayerController()->GetCharacter());
+
+	for (auto& point : m_spawnPoints)
+	{
+		if (FVector::Dist(point->GetActorLocation(), player->GetActorLocation()) < 1000)
+		{
+			nearPoints.Add(point);
+		}
+	}
+
+	return nearPoints;
 }
 
 // Called every frame
@@ -492,6 +521,8 @@ void APlanningAgent::Tick(float DeltaTime)
 void APlanningAgent::DetectShot()
 {
 	m_shootCount++;
+
+	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("Shoot Count: %d"), m_shootCount));
 }
 
 // Increases the amount of times the player has jumped
