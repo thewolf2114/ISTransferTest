@@ -98,8 +98,8 @@ void APlanningAgent::BeginPlay()
 
 	for (int i = 0; i < 6; i++)
 	{
-		prevFrust[i] = 0;
-		weightChange[i] = 0;
+		m_prevFrust[i] = 0;
+		m_weightChange[i] = 0;
 	}
 }
 
@@ -200,7 +200,7 @@ void APlanningAgent::SpawnEnemy()
 {
 	UWorld* const World = GetWorld();
 
-	if (World != NULL && m_spawnPoints.Num() > 0)
+	if (World != NULL)
 	{
 		FRotator rotation;
 		FVector location;
@@ -366,19 +366,19 @@ bool APlanningAgent::NeedNewStrategy()
 
 void APlanningAgent::AdjustWeights()
 {
- 	weightChange[0] = m_shootFrustration - prevFrust[0];
-	weightChange[1] = m_jumpFrustration - prevFrust[1];
-	weightChange[2] = m_moveBackFrustration - prevFrust[2];
-	weightChange[3] = m_zigZagFrustration - prevFrust[3];
-	weightChange[4] = m_turnFrustration - prevFrust[4];
-	weightChange[5] = m_lookUpFrustration - prevFrust[5];
+ 	m_weightChange[0] = m_shootFrustration - m_prevFrust[0];
+	m_weightChange[1] = m_jumpFrustration - m_prevFrust[1];
+	m_weightChange[2] = m_moveBackFrustration - m_prevFrust[2];
+	m_weightChange[3] = m_zigZagFrustration - m_prevFrust[3];
+	m_weightChange[4] = m_turnFrustration - m_prevFrust[4];
+	m_weightChange[5] = m_lookUpFrustration - m_prevFrust[5];
 
-	m_shootWeight += weightChange[0];
-	m_jumpWeight += weightChange[1];
-	m_moveBackWeight += weightChange[2];
-	m_zigZagWeight += weightChange[3];
-	m_turnWeight += weightChange[4];
-	m_lookUpWeight += weightChange[5];
+	m_shootWeight += m_weightChange[0];
+	m_jumpWeight += m_weightChange[1];
+	m_moveBackWeight += m_weightChange[2];
+	m_zigZagWeight += m_weightChange[3];
+	m_turnWeight += m_weightChange[4];
+	m_lookUpWeight += m_weightChange[5];
 
 	m_shootWeight = FMath::Clamp<float>(m_shootWeight, 0, 1);
 	m_jumpWeight = FMath::Clamp<float>(m_jumpWeight, 0, 1);
@@ -387,24 +387,26 @@ void APlanningAgent::AdjustWeights()
 	m_turnWeight = FMath::Clamp<float>(m_turnWeight, 0, 1);
 	m_lookUpWeight = FMath::Clamp<float>(m_lookUpWeight, 0, 1);
 
-	prevFrust[0] = m_shootFrustration;
-	prevFrust[1] = m_jumpFrustration;
-	prevFrust[2] = m_moveBackFrustration;
-	prevFrust[3] = m_zigZagFrustration;
-	prevFrust[4] = m_turnFrustration;
-	prevFrust[5] = m_lookUpFrustration;
+	m_prevFrust[0] = m_shootFrustration;
+	m_prevFrust[1] = m_jumpFrustration;
+	m_prevFrust[2] = m_moveBackFrustration;
+	m_prevFrust[3] = m_zigZagFrustration;
+	m_prevFrust[4] = m_turnFrustration;
+	m_prevFrust[5] = m_lookUpFrustration;
 }
 
+// Finds the spawn points that are behind the player from a list of spawn points near the player
 TArray<ASpawnPoint*> APlanningAgent::GetFlankingPoints()
 {
 	float dotProduct;
 	FVector direction;
 	TArray<ASpawnPoint*> spawnPoints;
+	TArray<ASpawnPoint*> nearPoints = PointsNearPlayer();
 	AISTransferTestCharacter* player = Cast<AISTransferTestCharacter>(GetWorld()->GetFirstPlayerController()->GetCharacter());
 
-	if (player != nullptr)
+	if (player != nullptr && nearPoints.Num() > 0)
 	{
-		for (auto& point : m_spawnPoints)
+		for (auto& point : nearPoints)
 		{
 			direction = point->GetActorLocation() - player->GetActorLocation();
 			dotProduct = FVector::DotProduct(direction, player->GetActorForwardVector());
@@ -419,16 +421,18 @@ TArray<ASpawnPoint*> APlanningAgent::GetFlankingPoints()
 	return spawnPoints;
 }
 
+// Finds the spawn points that are in front of the player from a list of spawn points near the player
 TArray<ASpawnPoint*> APlanningAgent::GetForwardPoints()
 {
 	float dotProduct;
 	FVector direction;
 	TArray<ASpawnPoint*> spawnPoints;
+	TArray<ASpawnPoint*> nearPoints = PointsNearPlayer();
 	AISTransferTestCharacter* player = Cast<AISTransferTestCharacter>(GetWorld()->GetFirstPlayerController()->GetCharacter());
 
-	if (player != nullptr)
+	if (player != nullptr && nearPoints.Num() > 0)
 	{
-		for (auto& point : m_spawnPoints)
+		for (auto& point : nearPoints)
 		{
 			direction = point->GetActorLocation() - player->GetActorLocation();
 			dotProduct = FVector::DotProduct(direction, player->GetActorForwardVector());
@@ -443,6 +447,7 @@ TArray<ASpawnPoint*> APlanningAgent::GetForwardPoints()
 	return spawnPoints;
 }
 
+// Gets the spawn points that are within a radius of the player
 TArray<ASpawnPoint*> APlanningAgent::PointsNearPlayer()
 {
 	TArray<ASpawnPoint*> nearPoints;
@@ -450,7 +455,7 @@ TArray<ASpawnPoint*> APlanningAgent::PointsNearPlayer()
 
 	for (auto& point : m_spawnPoints)
 	{
-		if (FVector::Dist(point->GetActorLocation(), player->GetActorLocation()) < 1000)
+		if (FVector::Dist(point->GetActorLocation(), player->GetActorLocation()) < RAD_AROUND_PLAYER)
 		{
 			nearPoints.Add(point);
 		}
@@ -485,13 +490,17 @@ void APlanningAgent::Tick(float DeltaTime)
 
 			ZeroCounts();
 
-			if (m_currFrustration < 0.3)
+			if (m_currFrustration < FRUSTRATION_THRESHOLD)
 			{
 				(this->* (m_strategies[m_strategyIndex]))();
 
 				if (NeedNewStrategy())
 				{
 					m_strategyIndex++;
+					if (m_strategyIndex > 5)
+					{
+						m_strategyIndex = 0;
+					}
 				}
 			}
 			else

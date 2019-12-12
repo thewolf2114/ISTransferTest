@@ -26,6 +26,7 @@ protected:
 
 	// Constants
 	const float MOVE_TIMER = 0.5;
+	const float FRUSTRATION_THRESHOLD = 0.3;
 	const int RESET_TIMER = 5;
 	const int SPAWN_TIMER = 2;
 	const int COOL_DOWN_TIMER = 10;
@@ -36,6 +37,12 @@ protected:
 	const int DEFAULT_PLAYER_HEAT = 100;
 	const int INCREASE_ENEMY_HEALTH = 20;
 	const int INCREASE_ENEMY_SPEED = 50;
+	const int RAD_AROUND_PLAYER = 750;
+
+	const int MAX_ENEMY_THRESHOLD = 25;
+	const int HEALTH_THRESHOLD = 200;
+	const int AGGRESSION_THRESHOLD = 1;
+	const int SPEED_THRESHOLD = 350;
 
 	// Timer
 	float m_resetTimer;
@@ -110,9 +117,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weights")
 	float m_lookUpWeight;
 
-	float prevFrust[6];
+	float m_prevFrust[6];
 
-	float weightChange[6];
+	float m_weightChange[6];
 
 	UPROPERTY(EditAnywhere, Category = "Spawn Enemy")
 	TSubclassOf<class AEnemyAgent1> m_enemyClass;
@@ -128,6 +135,8 @@ protected:
 	int m_enemyHealthIncreasedBy;
 	int m_enemySpeedIncreasedBy;
 	bool m_changedOverheat;
+
+	float m_thresholdPortions[4];
 
 	// Calculates the players frustration level
 	void CalcFrustration();
