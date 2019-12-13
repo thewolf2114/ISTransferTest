@@ -35,14 +35,15 @@ protected:
 	const int DEFAULT_ENEMY_AGGRESSION = 0;
 	const int DEFAULT_ENEMY_SPEED = 250;
 	const int DEFAULT_PLAYER_HEAT = 100;
-	const int INCREASE_ENEMY_HEALTH = 20;
-	const int INCREASE_ENEMY_SPEED = 50;
-	const int RAD_AROUND_PLAYER = 750;
+	const int INCREASE_ENEMY_HEALTH = 10;
+	const int INCREASE_ENEMY_SPEED = 20;
+	const int RAD_AROUND_PLAYER = 1000;
 
-	const int MAX_ENEMY_THRESHOLD = 25;
-	const int HEALTH_THRESHOLD = 200;
+	const int MAX_ENEMY_THRESHOLD = 100;
+	const int HEALTH_THRESHOLD = 500;
 	const int AGGRESSION_THRESHOLD = 1;
-	const int SPEED_THRESHOLD = 350;
+	const int SPEED_THRESHOLD = 500;
+	const float STRAT_INCREASE = 0.1;
 
 	// Timer
 	float m_resetTimer;
@@ -117,9 +118,11 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weights")
 	float m_lookUpWeight;
 
+	// for "machine learning" the weights
 	float m_prevFrust[6];
-
 	float m_weightChange[6];
+
+	// for determining most frustrating strat
 
 	UPROPERTY(EditAnywhere, Category = "Spawn Enemy")
 	TSubclassOf<class AEnemyAgent1> m_enemyClass;

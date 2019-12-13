@@ -106,7 +106,9 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 #if WITH_METADATA
 	const UE4CodeGen_Private::FMetaDataPairParam Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass_MetaData[] = {
 		{ "Category", "Spawn Enemy" },
+		{ "Comment", "// for determining most frustrating strat\n" },
 		{ "ModuleRelativePath", "PlanningAgent.h" },
+		{ "ToolTip", "for determining most frustrating strat" },
 	};
 #endif
 	const UE4CodeGen_Private::FClassPropertyParams Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass = { "m_enemyClass", nullptr, (EPropertyFlags)0x0024080000000001, UE4CodeGen_Private::EPropertyGenFlags::Class, RF_Public|RF_Transient|RF_MarkAsNative, 1, STRUCT_OFFSET(APlanningAgent, m_enemyClass), Z_Construct_UClass_AEnemyAgent1_NoRegister, Z_Construct_UClass_UClass, METADATA_PARAMS(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass_MetaData, ARRAY_COUNT(Z_Construct_UClass_APlanningAgent_Statics::NewProp_m_enemyClass_MetaData)) };
@@ -250,7 +252,7 @@ void EmptyLinkFunctionForGeneratedCodePlanningAgent() {}
 		}
 		return OuterClass;
 	}
-	IMPLEMENT_CLASS(APlanningAgent, 1428794509);
+	IMPLEMENT_CLASS(APlanningAgent, 1672008034);
 	template<> ISTRANSFERTEST_API UClass* StaticClass<APlanningAgent>()
 	{
 		return APlanningAgent::StaticClass();
