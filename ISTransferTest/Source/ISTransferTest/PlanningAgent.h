@@ -123,6 +123,9 @@ protected:
 	float m_weightChange[6];
 
 	// for determining most frustrating strat
+	float m_thresholdPortions[4];
+	int m_currThreshold;
+	bool m_stopStratIncrease;
 
 	UPROPERTY(EditAnywhere, Category = "Spawn Enemy")
 	TSubclassOf<class AEnemyAgent1> m_enemyClass;
@@ -138,8 +141,6 @@ protected:
 	int m_enemyHealthIncreasedBy;
 	int m_enemySpeedIncreasedBy;
 	bool m_changedOverheat;
-
-	float m_thresholdPortions[4];
 
 	// Calculates the players frustration level
 	void CalcFrustration();
