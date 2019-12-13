@@ -255,27 +255,27 @@ void APlanningAgent::SpawnEnemy()
 
 void APlanningAgent::IncreaseMaxEnemy()
 {
-	// TODO: Test the enemy max increase strategy
+	// TODO Test the enemy max increase strategy
 	m_maxEnemies = DEFAULT_MAX_ENEMY + (MAX_ENEMY_THRESHOLD * m_thresholdPortions[0]);
 	m_enemiesIncreasedBy++;
 }
 
 void APlanningAgent::IncreaseEnemyHealth()
 {
-	// TODO: Test the enemy health increase strategy
+	// TODO Test the enemy health increase strategy
 	m_enemyHealth = DEFAULT_ENEMY_HEALTH + (HEALTH_THRESHOLD * m_thresholdPortions[1]);
 	m_enemyHealthIncreasedBy += INCREASE_ENEMY_HEALTH;
 }
 
 void APlanningAgent::IncreaseEnemyAggression()
 {
-	// TODO: Test the enemy aggression increase strategy
+	// TODO Test the enemy aggression increase strategy
 	m_enemyAggression += AGGRESSION_THRESHOLD * m_thresholdPortions[2];
 }
 
 void APlanningAgent::IncreaseEnemySpeed()
 {
-	// TODO: Test the enemy speed increase strategy
+	// TODO Test the enemy speed increase strategy
 	m_enemySpeed = DEFAULT_ENEMY_SPEED + (SPEED_THRESHOLD * m_thresholdPortions[3]);
 	m_enemySpeedIncreasedBy += INCREASE_ENEMY_SPEED;
 }
@@ -325,7 +325,7 @@ void APlanningAgent::Default()
 	m_strategyIndex++;
 }
 
-// TODO: Potentially remove this whole method
+// TODO Potentially remove this whole method
 bool APlanningAgent::NeedNewStrategy()
 {
 	bool needStrategy = false;
@@ -406,6 +406,11 @@ void APlanningAgent::AdjustWeights()
 	m_prevFrust[3] = m_zigZagFrustration;
 	m_prevFrust[4] = m_turnFrustration;
 	m_prevFrust[5] = m_lookUpFrustration;
+}
+
+// TODO Write most frustrating strat function
+void APlanningAgent::MostFrustratingStrat()
+{
 }
 
 // Finds the spawn points that are behind the player from a list of spawn points near the player
@@ -505,7 +510,8 @@ void APlanningAgent::Tick(float DeltaTime)
 
 			if (m_currFrustration < FRUSTRATION_THRESHOLD)
 			{
-				m_thresholdPortions[m_currThreshold] += STRAT_INCREASE;
+				if (!m_stopStratIncrease)
+					m_thresholdPortions[m_currThreshold] += STRAT_INCREASE;
 				(this->* (m_strategies[m_strategyIndex]))();
 
 				//if (NeedNewStrategy())
@@ -519,8 +525,7 @@ void APlanningAgent::Tick(float DeltaTime)
 			}
 			else
 			{
-				// TODO: Develope a better system for when the player is frustrated with this strat.
-				// TODO: Develope a function that determines the most frustrating strategy.
+				// TODO Develope a better system for when the player is frustrated with this strat.
 				Default();
 				m_strategyIndex++;
 				m_currThreshold++;
@@ -528,6 +533,7 @@ void APlanningAgent::Tick(float DeltaTime)
 				if (m_currThreshold > 3)
 				{
 					m_currThreshold = 0;
+					m_stopStratIncrease = true;
 				}
 
 				if (m_strategyIndex > 5)

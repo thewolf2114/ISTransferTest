@@ -136,6 +136,7 @@ protected:
 
 	// Variables for function pointers
 	FunctionPtrType m_strategies[MAX_STRATEGY];
+	int m_mostFrustrating;
 	int m_strategyIndex;
 	int m_enemiesIncreasedBy;
 	int m_enemyHealthIncreasedBy;
@@ -167,6 +168,7 @@ protected:
 	void Default();
 	bool NeedNewStrategy();
 	void AdjustWeights();
+	void MostFrustratingStrat();
 
 	// Helper functions
 	TArray<ASpawnPoint*> GetFlankingPoints();
