@@ -255,23 +255,27 @@ void APlanningAgent::SpawnEnemy()
 
 void APlanningAgent::IncreaseMaxEnemy()
 {
+	// TODO: Test the enemy max increase strategy
 	m_maxEnemies = DEFAULT_MAX_ENEMY + (MAX_ENEMY_THRESHOLD * m_thresholdPortions[0]);
 	m_enemiesIncreasedBy++;
 }
 
 void APlanningAgent::IncreaseEnemyHealth()
 {
+	// TODO: Test the enemy health increase strategy
 	m_enemyHealth = DEFAULT_ENEMY_HEALTH + (HEALTH_THRESHOLD * m_thresholdPortions[1]);
 	m_enemyHealthIncreasedBy += INCREASE_ENEMY_HEALTH;
 }
 
 void APlanningAgent::IncreaseEnemyAggression()
 {
+	// TODO: Test the enemy aggression increase strategy
 	m_enemyAggression += AGGRESSION_THRESHOLD * m_thresholdPortions[2];
 }
 
 void APlanningAgent::IncreaseEnemySpeed()
 {
+	// TODO: Test the enemy speed increase strategy
 	m_enemySpeed = DEFAULT_ENEMY_SPEED + (SPEED_THRESHOLD * m_thresholdPortions[3]);
 	m_enemySpeedIncreasedBy += INCREASE_ENEMY_SPEED;
 }
@@ -321,6 +325,7 @@ void APlanningAgent::Default()
 	m_strategyIndex++;
 }
 
+// TODO: Potentially remove this whole method
 bool APlanningAgent::NeedNewStrategy()
 {
 	bool needStrategy = false;
@@ -514,6 +519,8 @@ void APlanningAgent::Tick(float DeltaTime)
 			}
 			else
 			{
+				// TODO: Develope a better system for when the player is frustrated with this strat.
+				// TODO: Develope a function that determines the most frustrating strategy.
 				Default();
 				m_strategyIndex++;
 				m_currThreshold++;
