@@ -66,11 +66,11 @@ APlanningAgent::APlanningAgent()
 	m_enemiesIncreasedBy = 0;
 	m_enemyHealthIncreasedBy = 0;
 	m_enemySpeedIncreasedBy = 0;
-	m_strategyIndex = 0;
+	m_strategyIndex = 3;
 	m_changedOverheat = false;
 	InitStrategies();
 
-	m_currThreshold = 0;
+	m_currThreshold = 3;
 	m_stopStratIncrease = false;
 }
 
@@ -255,27 +255,25 @@ void APlanningAgent::SpawnEnemy()
 
 void APlanningAgent::IncreaseMaxEnemy()
 {
-	// TODO Test the enemy max increase strategy
 	m_maxEnemies = DEFAULT_MAX_ENEMY + (MAX_ENEMY_THRESHOLD * m_thresholdPortions[0]);
 	m_enemiesIncreasedBy++;
 }
 
 void APlanningAgent::IncreaseEnemyHealth()
 {
-	// TODO Test the enemy health increase strategy
 	m_enemyHealth = DEFAULT_ENEMY_HEALTH + (HEALTH_THRESHOLD * m_thresholdPortions[1]);
 	m_enemyHealthIncreasedBy += INCREASE_ENEMY_HEALTH;
 }
 
 void APlanningAgent::IncreaseEnemyAggression()
 {
-	// TODO Test the enemy aggression increase strategy
 	m_enemyAggression += AGGRESSION_THRESHOLD * m_thresholdPortions[2];
+	
+	m_enemyAggression = FMath::Clamp<float>(m_enemyAggression, 0, 1);
 }
 
 void APlanningAgent::IncreaseEnemySpeed()
 {
-	// TODO Test the enemy speed increase strategy
 	m_enemySpeed = DEFAULT_ENEMY_SPEED + (SPEED_THRESHOLD * m_thresholdPortions[3]);
 	m_enemySpeedIncreasedBy += INCREASE_ENEMY_SPEED;
 }
@@ -411,6 +409,22 @@ void APlanningAgent::AdjustWeights()
 // TODO Write most frustrating strat function
 void APlanningAgent::MostFrustratingStrat()
 {
+	int frustIndex = -1;
+	float frustVal = m_thresholdPortions[0];
+
+	for (int i = 0; i < 4; i++)
+	{
+		if (m_thresholdPortions[i] < frustVal)
+		{
+			frustVal = m_thresholdPortions[i];
+			frustIndex = i;
+		}
+	}
+
+	if (frustIndex != -1)
+	{
+
+	}
 }
 
 // Finds the spawn points that are behind the player from a list of spawn points near the player
@@ -539,6 +553,7 @@ void APlanningAgent::Tick(float DeltaTime)
 				if (m_strategyIndex > 5)
 				{
 					m_strategyIndex = 0;
+					m_stopStratIncrease = false;
 				}
 			}
 		}

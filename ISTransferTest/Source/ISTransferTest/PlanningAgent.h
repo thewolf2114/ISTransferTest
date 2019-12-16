@@ -26,9 +26,9 @@ protected:
 
 	// Constants
 	const float MOVE_TIMER = 0.5;
-	const float FRUSTRATION_THRESHOLD = 0.3;
+	const float FRUSTRATION_THRESHOLD = 0.2;
 	const int RESET_TIMER = 5;
-	const int SPAWN_TIMER = 2;
+	const float SPAWN_TIMER = 0.1;
 	const int COOL_DOWN_TIMER = 10;
 	const int DEFAULT_MAX_ENEMY = 10;
 	const int DEFAULT_ENEMY_HEALTH = 100;
@@ -37,10 +37,10 @@ protected:
 	const int DEFAULT_PLAYER_HEAT = 100;
 	const int INCREASE_ENEMY_HEALTH = 10;
 	const int INCREASE_ENEMY_SPEED = 20;
-	const int RAD_AROUND_PLAYER = 1000;
+	const int RAD_AROUND_PLAYER = 750;
 
-	const int MAX_ENEMY_THRESHOLD = 100;
-	const int HEALTH_THRESHOLD = 500;
+	const int MAX_ENEMY_THRESHOLD = 1000;
+	const int HEALTH_THRESHOLD = 1000;
 	const int AGGRESSION_THRESHOLD = 1;
 	const int SPEED_THRESHOLD = 500;
 	const float STRAT_INCREASE = 0.1;
