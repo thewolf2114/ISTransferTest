@@ -26,7 +26,7 @@ protected:
 
 	// Constants
 	const float MOVE_TIMER = 0.5;
-	const float FRUSTRATION_THRESHOLD = 0.3;
+	const float FRUSTRATION_THRESHOLD = 0.25;
 	const int RESET_TIMER = 5;
 	const float SPAWN_TIMER = 0.1;
 	const int COOL_DOWN_TIMER = 10;
