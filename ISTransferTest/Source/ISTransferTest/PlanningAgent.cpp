@@ -66,12 +66,13 @@ APlanningAgent::APlanningAgent()
 	m_enemiesIncreasedBy = 0;
 	m_enemyHealthIncreasedBy = 0;
 	m_enemySpeedIncreasedBy = 0;
-	m_strategyIndex = 3;
+	m_strategyIndex = 0;
 	m_changedOverheat = false;
 	InitStrategies();
 
-	m_currThreshold = 3;
+	m_currThreshold = 0;
 	m_stopStratIncrease = false;
+	m_mostFrustrating = 0;
 }
 
 // Initialize function pointer array with strategies
@@ -317,10 +318,7 @@ void APlanningAgent::Default()
 	m_enemiesIncreasedBy = 0;
 	m_enemyHealthIncreasedBy = 0;
 	m_enemySpeedIncreasedBy = 0;
-	m_strategyIndex = 0;
 	m_changedOverheat = false;
-
-	m_strategyIndex++;
 }
 
 // TODO Potentially remove this whole method
@@ -423,7 +421,7 @@ void APlanningAgent::MostFrustratingStrat()
 
 	if (frustIndex != -1)
 	{
-
+		m_mostFrustrating = frustIndex;
 	}
 }
 
@@ -548,6 +546,8 @@ void APlanningAgent::Tick(float DeltaTime)
 				{
 					m_currThreshold = 0;
 					m_stopStratIncrease = true;
+
+					MostFrustratingStrat();
 				}
 
 				if (m_strategyIndex > 5)
@@ -555,6 +555,9 @@ void APlanningAgent::Tick(float DeltaTime)
 					m_strategyIndex = 0;
 					m_stopStratIncrease = false;
 				}
+
+				GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("Strategy Index: %d"), m_strategyIndex));
+				GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Red, FString::Printf(TEXT("Threshold Index: %d"), m_currThreshold));
 			}
 		}
 	}
@@ -579,8 +582,6 @@ void APlanningAgent::Tick(float DeltaTime)
 void APlanningAgent::DetectShot()
 {
 	m_shootCount++;
-
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Yellow, FString::Printf(TEXT("Shoot Count: %d"), m_shootCount));
 }
 
 // Increases the amount of times the player has jumped
